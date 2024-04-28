@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 19:05:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/04/28 20:58:44 by iziane           ###   ########.fr       */
+/*   Updated: 2024/04/28 21:13:43 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ int	main(int argc, char **argv)
 		return (0);
 	i = 1;
 	flag = 0;
+	substring_words = 0;
 	// Counting Numbers even within substring
 	while (argv && argv[i])
 	{
 		if (count_word(argv[i]) > 1)
 		{
-			i = i + count_word(argv[i]);
+			substring_words = substring_words + count_word(argv[i]);
 			flag++;
 		}
-		else
-			i++;
+		i++;
 	}
-	amount_numbers = (i - 1) + flag;
+	amount_numbers = (i - 1) - flag + substring_words;
 	printf("Amount numbers: %d\n", amount_numbers);
 	//Allocating memory for array to store the numbers of String into it
 	array = malloc(sizeof(int) * amount_numbers);
