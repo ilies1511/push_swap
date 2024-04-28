@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/04/28 20:15:31 by iziane           ###   ########.fr       */
+/*   Updated: 2024/04/28 21:51:06 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 
 int		count_word(const char *str);
 void	sort_array(int *array, int len);
+int		check_duplicates(int *array, int amount_numbers);
 
 #endif

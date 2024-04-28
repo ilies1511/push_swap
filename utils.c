@@ -6,31 +6,43 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:10:20 by iziane            #+#    #+#             */
-/*   Updated: 2024/04/28 20:17:45 by iziane           ###   ########.fr       */
+/*   Updated: 2024/04/28 22:16:02 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int	check_duplicates(int *array, int amount_numbers)
-// {
-// 	int	i;
-// 	int	k;
+void	ft_putstr(const char *str)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (array && i < amount_numbers)
-// 	{
-// 		k = i + 1;
-// 		while (k < amount_numbers)
-// 		{
-// 			if (array[i] == array[k])
-// 				return (1);
-// 			k++;
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	i = 0;
+	while (str && str[i])
+		write (1, &str[i++], 1);
+}
+
+int	check_duplicates(int *array, int amount_numbers)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	while (array && i < amount_numbers)
+	{
+		k = i + 1;
+		while (k < amount_numbers)
+		{
+			if (array[i] == array[k])
+			{
+				printf("Dublicate: %d\n", array[i]);
+				return (1);
+			}
+			k++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 int	count_word(const char *str)
 {
