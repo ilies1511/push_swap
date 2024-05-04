@@ -6,7 +6,7 @@
 #    By: iziane <iziane@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 23:43:41 by iziane            #+#    #+#              #
-#    Updated: 2024/04/27 14:37:23 by iziane           ###   ########.fr        #
+#    Updated: 2024/05/04 23:48:03 by iziane           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
 
-SRC			=	utils.c main.c
+SRC			=	utils.c main.c list.c error.c
 
 OBJ			=	$(SRC:%.c=%.o)
 

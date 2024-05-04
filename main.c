@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 19:05:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/04/28 22:11:59 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/04 23:06:10 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,17 @@ int	main(int argc, char **argv)
 	amount_numbers = (i - 1) - flag + substring_words;
 	printf("Amount numbers: %d\n", amount_numbers);
 	array = malloc(sizeof(int) * amount_numbers);
+	if (!array)
+	{
+		printf("Allocation failed\n");
+		return (0);
+	}
 	sorted_array = malloc(sizeof(int) * amount_numbers);
+	if (!array)
+	{
+		printf("Allocation failed\n");
+		return (0);
+	}
 	i = 0;
 	k = 1;
 	while (i < amount_numbers && argv[k])
@@ -109,4 +119,5 @@ int	main(int argc, char **argv)
 		printf("%d ", sorted_array[i++]);
 	printf("\n------------------------------------------------------\n");
 	//Implementierung von Stack
+	fill_list(array, amount_numbers);
 }
