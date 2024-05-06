@@ -6,11 +6,11 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 20:57:31 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 05:38:20 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 16:59:30 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	int_range_check(char **argv, int amount_numbers)
 {

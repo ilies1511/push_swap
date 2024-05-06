@@ -6,11 +6,11 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:01:26 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 05:24:41 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 17:04:36 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	*array_dub(int *array, int amount_numbers)
 {
@@ -96,8 +96,8 @@ int	*make_array(int *amount_numbers, char **argv)
 		free(array);
 		exit (1);
 	}
-	sorted_array = array_dub(array, *amount_numbers);
-	sort_array(sorted_array, *amount_numbers);
+	// sorted_array = array_dub(array, *amount_numbers);
+	// sort_array(sorted_array, *amount_numbers);
 	print_array(array, *amount_numbers);
 	return (array);
 }

@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 05:36:34 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 16:28:11 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	rm_node(t_node *node, t_node **tail, t_node **head);
 //Operation
 void	sa(t_node **tail);
 void	sb(t_node **tail_b);
+void	ss(t_node **tail_a, t_node **tail_b);
 void	pb(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);
 
 #endif

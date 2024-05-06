@@ -6,11 +6,11 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:47:46 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/05 00:08:42 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 17:19:41 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	deallocate_list(t_node **tail, t_node **head)
 {

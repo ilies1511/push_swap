@@ -6,11 +6,11 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:10:20 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 05:27:46 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 17:02:11 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	number_counter(char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:45:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 05:40:05 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 16:04:32 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	int	*array;
+	int	*sorted_array;
 	int	amount_words;
 
 	if ((argc <= 1)
@@ -26,5 +27,9 @@ int	main(int argc, char **argv)
 	amount_words = number_counter(argv);
 	parcer(argv, amount_words);
 	array = make_array(&amount_words, argv);
+	sorted_array = array_dub(array, amount_words);
+	sort_array(sorted_array, amount_words);
+	print_array(sorted_array, amount_words);
+	fill_list(sorted_array, amount_words);
 }
 

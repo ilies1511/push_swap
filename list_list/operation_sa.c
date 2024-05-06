@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_sb.c                                     :+:      :+:    :+:   */
+/*   operation_sa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 01:14:22 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/05 01:19:47 by iziane           ###   ########.fr       */
+/*   Created: 2024/05/05 00:57:53 by iziane            #+#    #+#             */
+/*   Updated: 2024/05/06 17:19:58 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	sb(t_node **tail_b)
+void	sa(t_node **tail_a)
 {
 	int	temp;
 
-	if (*tail_b == NULL || (*tail_b)->next == NULL)
+	if (!(*tail_a))
 		return ;
-	temp = (*tail_b)->x;
-	(*tail_b)->x = (*tail_b)->next->x;
-	(*tail_b)->next->x = temp;
+	temp = (*tail_a)->x;
+	(*tail_a)->x = (*tail_a)->next->x;
+	(*tail_a)->next->x = temp;
 }
