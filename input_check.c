@@ -6,50 +6,11 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 20:57:31 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 04:58:39 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 05:38:20 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	substring_case_function_preatoi(int words, char **argv, int *k)
-{
-	int		j;
-	char	**substring_case;
-
-	substring_case = ft_split(argv[*k], ' ');
-	j = 0;
-	while (words--)
-	{
-		if (pre_atoi(substring_case[j]) != 0)
-		{
-			write (2, "Error\n", 6);
-			exit (1);
-		}
-		j++;
-	}
-	ft_free_2d(substring_case);
-}
-
-void	substring_case_function(int substring_words, char **argv, int *k)
-{
-	char	**substring_case;
-	int		j;
-
-	substring_case = ft_split(argv[*k], ' ');
-	j = 0;
-	while (substring_words--)
-	{
-		if (ft_atoi(substring_case[j]) <= INT_MIN
-			|| ft_atoi(substring_case[j]) >= INT_MAX)
-		{
-			write (2, "Error\n", 6);
-			exit (1);
-		}
-		j++;
-	}
-	ft_free_2d(substring_case);
-}
 
 void	int_range_check(char **argv, int amount_numbers)
 {
@@ -79,22 +40,6 @@ void	int_range_check(char **argv, int amount_numbers)
 		i++;
 	}
 }
-
-// int	pre_atoi(char *str)
-// {
-// 	int	k;
-
-// 	k = 0;
-// 	if (str[0] == '-')
-// 		k++;
-// 	while (str && str[k])
-// 	{
-// 		if (!ft_isdigit(str[k]))
-// 			return (1);
-// 		k++;
-// 	}
-// 	return (0);
-// }
 
 int	pre_atoi(char *str)
 {

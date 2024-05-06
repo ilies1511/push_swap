@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 05:22:36 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 05:36:34 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	central(int amount_numbers, char **argv);
 int		pre_atoi(char *str);
 void	int_range_check(char **argv, int amount_numbers);
 void	substring_case_function(int substring_words, char **argv, int *k);
+void	substring_case_function_preatoi(int words, char **argv, int *k);
 int		*array_filler(int *amount_numbers, char **argv, int *array);
 int		count_word(const char *str);
 void	sort_array(int *array, int len);
