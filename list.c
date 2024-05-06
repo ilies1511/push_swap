@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/05 00:51:37 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/05 04:39:41 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,24 @@ t_node	*init_list(t_node **tail, t_node **head, int value)
 
 void	fill_list(int *array, int amount_numbers)
 {
-	t_node	*tail;
-	t_node	*head;
+	t_node	*tail_a;
+	t_node	*head_a;
 	t_node	*stack_a;
 	t_node	*stack_b;
 	int		i;
 
+
+
 	i = 0;
-	stack_a = init_list(&tail, &head, array[i]);
+	stack_a = init_list(&tail_a, &head_a, array[i]);
 	stack_b = NULL;
 	while (i < amount_numbers)
-		add_begin(&tail, &head, array[i++]);
-	print_left2right(&tail, &head);
-	deallocate_list(&tail, &head);
-	printf("\nTest, on free erfolgreich war: ");
-	print_left2right(&tail, &head);
+		add_begin(&tail_a, &head_a, array[i++]);
+	print_left2right(&tail_a, &head_a);
+	sa(&tail_a);
+	printf("\nNach 'sa' Operation: \n");
+	print_left2right(&tail_a, &head_a);
+	// pb(&tail_a, NULL, &head_a, NULL);
+	// printf("\nNach 'pa' Operation: \n");
+	// print_left2right(&tail_a, &head_a);
 }

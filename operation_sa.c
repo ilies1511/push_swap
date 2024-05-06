@@ -6,7 +6,17 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 00:57:53 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/05 00:57:55 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/05 01:19:13 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+void	sa(t_node **tail_a)
+{
+	int	temp;
+
+	temp = (*tail_a)->x;
+	(*tail_a)->x = (*tail_a)->next->x;
+	(*tail_a)->next->x = temp;
+}

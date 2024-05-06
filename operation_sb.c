@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   operation_sb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 18:45:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 05:22:08 by iziane           ###   ########.fr       */
+/*   Created: 2024/05/05 01:14:22 by iziane            #+#    #+#             */
+/*   Updated: 2024/05/05 01:19:47 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	sb(t_node **tail_b)
 {
-	int	*array;
-	int	amount_words;
+	int	temp;
 
-	if ((argc <= 1)
-		|| ( (argc == 2) && (!ft_strncmp(argv[1], "", ft_strlen(argv[1])))))
-	{
-		write (2, "Error\n", 6);
-		return (1);
-	}
-	amount_words = number_counter(argv);
-	parcer(argv, amount_words);
-	array = make_array(&amount_words, argv);
+	if (*tail_b == NULL || (*tail_b)->next == NULL)
+		return ;
+	temp = (*tail_b)->x;
+	(*tail_b)->x = (*tail_b)->next->x;
+	(*tail_b)->next->x = temp;
 }
-

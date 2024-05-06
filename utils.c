@@ -6,11 +6,38 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:10:20 by iziane            #+#    #+#             */
-/*   Updated: 2024/04/28 22:16:02 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 05:27:46 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	number_counter(char **argv)
+{
+	int	i;
+	int	substring_words;
+	int	flag;
+
+	i = 0;
+	flag = 0;
+	substring_words = 0;
+	while (argv && argv[i])
+	{
+		// if (!ft_strncmp(argv[i], "", ft_strlen(argv[i])))
+		// {
+		// 	i++;
+		// 	flag++;
+		// 	continue ;
+		// }
+		if (count_word(argv[i]) > 1)
+		{
+			substring_words = substring_words + count_word(argv[i]);
+			flag++;
+		}
+		i++;
+	}
+	return ((i - 1) - flag + substring_words);
+}
 
 void	ft_putstr(const char *str)
 {
@@ -34,8 +61,8 @@ int	check_duplicates(int *array, int amount_numbers)
 		{
 			if (array[i] == array[k])
 			{
-				printf("Dublicate: %d\n", array[i]);
-				return (1);
+				write (2, "Error\n", 6);
+				exit(1);
 			}
 			k++;
 		}
@@ -51,12 +78,21 @@ int	count_word(const char *str)
 
 	i = 0;
 	counter = 0;
+	if (!ft_strncmp(str, "", ft_strlen(str)))
+		return (0);
 	while (str && str[i])
 	{
-		if ((str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
-			|| (str[i] != '\t' && (i == 0 || str[i - 1] == '\t')))
-			counter++;
-		i++;
+		while (str[i] == ' ' || str[i] == '\t')
+			i++;
+		if (str[i])
+		{
+			i++;
+			if (str[i] == ' ' || str[i] == '\t' || str[i] == '\0')
+			{
+				counter++;
+				continue ;
+			}
+		}
 	}
 	return (counter);
 }

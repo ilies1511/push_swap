@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 22:39:25 by iziane            #+#    #+#             */
-/*   Updated: 2024/04/27 00:16:16 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/06 03:15:04 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void	ft_free_2d(char **str);
 int		ft_isalnum(int x);
 int		ft_isalpha(int argument);
 int		ft_isascii(int argument);

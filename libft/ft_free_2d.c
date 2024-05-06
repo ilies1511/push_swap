@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_2d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 18:45:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 05:22:08 by iziane           ###   ########.fr       */
+/*   Created: 2024/05/06 03:05:49 by iziane            #+#    #+#             */
+/*   Updated: 2024/05/06 03:13:11 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_free_2d(char **str)
 {
-	int	*array;
-	int	amount_words;
+	int	i;
 
-	if ((argc <= 1)
-		|| ( (argc == 2) && (!ft_strncmp(argv[1], "", ft_strlen(argv[1])))))
+	i = 0;
+	while (str && str[i])
 	{
-		write (2, "Error\n", 6);
-		return (1);
+		free(str[i]);
+		str[i] = NULL;
+		i++;
 	}
-	amount_words = number_counter(argv);
-	parcer(argv, amount_words);
-	array = make_array(&amount_words, argv);
+	free(str);
 }
-
