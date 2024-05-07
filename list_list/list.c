@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/07 03:45:04 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/07 04:33:02 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,44 +28,6 @@ void	print_left2right(t_node **tail, t_node **head)
 	}
 }
 
-// void	print_left2right(t_node **tail, t_node **head)
-// {
-// 	t_node	*current;
-
-// 	if (*tail && *head)
-// 	{
-// 		current = *tail;
-// 		while (current)
-// 		{
-// 			if (current == (*head))
-// 				break ;
-// 			printf("%d ", current->x);
-// 			current = current->next;
-// 		}
-// 		printf("%d\n", current->x);
-// 		if ((*tail) == (*head))
-// 			printf("%d ", current->x);
-// 	}
-// }
-
-// void	print_left2right(t_node **tail, t_node **head)
-// {
-// 	t_node	*current;
-
-// 	if (*tail && *head)
-// 	{
-// 		current = *tail;
-// 		while (current != *head && current != NULL)
-// 		{
-// 			printf("%d ", current->x);
-// 			current = current->next;
-// 		}
-// 		printf("%d\n", current->x);
-// 		if ((*tail) == (*head))
-// 			printf("%d ", current->x);
-// 	}
-// }
-
 void	add_end(t_node **tail, t_node **head, int value)
 {
 	t_node	*new_node;
@@ -81,47 +43,6 @@ void	add_end(t_node **tail, t_node **head, int value)
 	*head = new_node;
 }
 
-// void	print_left2right(t_node **tail, t_node **head)
-// {
-// 	t_node	*current;
-
-// 	current = *tail;
-// 	if (*tail && (*tail)->next)
-// 	{
-// 		while (current != *head && current != NULL)
-// 		{
-// 			printf("nexts: %d; \t", current->next->x);
-// 			printf("value: %d; \t", current->x);
-// 			printf("prevs next: %d \n", current->prev->next->x);
-// 			current = current->next;
-// 		}
-// 		current = current->next;
-// 		printf("value: %d; \t", current->x);
-// 	}
-// 	else if ((*tail) == (*head))
-// 		printf("%d ", current->x);
-// }
-
-// void	print_left2right(t_node **tail, t_node **head)
-// {
-// 	t_node	*current;
-
-// 	current = *head;
-// 	if (*head && (*head)->prev)
-// 	{
-// 		while (current != *tail && current != NULL)
-// 		{
-// 			// printf("nexts: %d; \t", current->next->x);
-// 			printf("value: %d; \n", current->x);
-// 			// printf("prevs next: %d \n", current->prev->next->x);
-// 			current = current->prev;
-// 		}
-// 		current = current->prev;
-// 		printf("value: %d; \t", current->x);
-// 	}
-// 	else if ((*tail) == (*head))
-// 		printf("%d ", current->x);
-// }
 void	add_begin(t_node **tail, t_node **head, int value)
 {
 	t_node	*new_node;
@@ -185,12 +106,18 @@ void	fill_list(int *array, int amount_numbers)
 	// i = i + 1;
 	while (i < amount_numbers)
 		add_begin(&tail_a, &head_a, array[i++]);
-	// printf("\nPost add_begin\n");
-	// print_left2right(&tail_a, &head_a);
-	// printf("\nPost add_begin\n");
-	// ra(&tail_a, &head_a);
-	printf("Test stack b pre\n");
-	add_begin(&tail_b, &head_b, 99);
-	printf("\nTest stack b ppst\n");
-	print_left2right(&tail_b, &head_b);
+	printf("\nPost add_begin\n");
+	print_left2right(&tail_a, &head_a);
+	printf("\nPost add_begin\n");
+	rra_or_rrb(&tail_a, &head_a);
+	print_left2right(&tail_a, &head_a);
+	// printf("Test stack b pre\n");
+	// add_begin(&tail_b, &head_b, 1);
+	// add_begin(&tail_b, &head_b, 2);
+	// add_begin(&tail_b, &head_b, 3);
+	// add_begin(&tail_b, &head_b, 4);
+	// print_left2right(&tail_b, &head_b);
+	// printf("\nTest stack b post\n");
+	// ra_or_rb(&tail_b, &head_b);
+	// print_left2right(&tail_b, &head_b);
 }
