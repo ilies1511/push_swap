@@ -6,9 +6,11 @@
 #    By: iziane <iziane@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 23:43:41 by iziane            #+#    #+#              #
-#    Updated: 2024/05/06 17:22:29 by iziane           ###   ########.fr        #
+#    Updated: 2024/05/06 19:00:31 by iziane           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.SILENT:
 
 NAME		=	push_swap
 
@@ -19,7 +21,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
 
 SRC			=	$(addprefix parser/, input_check.c substring_cases.c utils.c arrayz.c)\
-				$(addprefix list_list/, error.c list.c operation_pb.c operation_sa.c operation_sb.c operation_ss.c)\
+				$(addprefix list_list/, error.c list.c operation_pa.c operation_pb.c operation_sa.c operation_sb.c operation_ss.c operation_ra.c)\
  				main.c
 
 OBJ			=	$(SRC:%.c=%.o)

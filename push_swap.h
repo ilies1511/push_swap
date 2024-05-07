@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 16:28:11 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/07 00:55:19 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,13 @@ void	add_begin(t_node **tail, t_node **head, int value);
 t_node	*init_list(t_node **tail, t_node **head, int value);
 void	deallocate_list(t_node **tail, t_node **head);
 void	rm_node(t_node *node, t_node **tail, t_node **head);
+void	add_end(t_node **tail, t_node **head, int value);
 //Operation
 void	sa(t_node **tail);
 void	sb(t_node **tail_b);
 void	ss(t_node **tail_a, t_node **tail_b);
 void	pb(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);
+void	pa(t_node **tail_a, t_node **head_a, t_node **tail_b, t_node **head_b);
+void	ra(t_node **tail, t_node **head);
 
 #endif
