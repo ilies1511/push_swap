@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/07 04:40:30 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/08 19:04:49 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_node
 {
 	int				x;
+	int				index;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
@@ -49,6 +50,8 @@ t_node	*init_list(t_node **tail, t_node **head, int value);
 void	deallocate_list(t_node **tail, t_node **head);
 void	rm_node(t_node *node, t_node **tail, t_node **head);
 void	add_end(t_node **tail, t_node **head, int value);
+void	init_index(t_node **tail);
+int		count_node_and_set_default_index(t_node **tail);
 //Operation
 void	sa(t_node **tail);
 void	sb(t_node **tail_b);

@@ -105,3 +105,8 @@ bonus: all
 # := instead of = to avoid infinite recursion if ex. You type CC = $(CC)
 #SRCS := $(wildcard *.c): $(wildcard pattern) is one of the functions for filenames. In this case, all files with the .c extension will be stored in a variable SRCS.
 #BINS := $(SRCS:%.c=%): This is called as substitution reference. In this case, if SRCS has values 'foo.c bar.c', BINS will have 'foo bar'.
+
+
+
+
+# For docker: $(CFLAGS) -I $(HEADER) -c $< -o $@ (ohne -I $(HEADER))
