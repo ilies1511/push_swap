@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/08 19:04:49 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/09 16:08:27 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int		*make_array(int *amount_numbers, char **argv);
 void	print_array(int *array, int amount_numbers);
 int		*array_dub(int *array, int amount_numbers);
 //Utils Linked List
-void	list_manager(int *array, int amount_numbers);
+void	list_manager(int *array, int amount_numbers, int *sorted_array);
 void	print_left2right(t_node **tail, t_node **head);
 void	add_begin(t_node **tail, t_node **head, int value);
 t_node	*init_list(t_node **tail, t_node **head, int value);
 void	deallocate_list(t_node **tail, t_node **head);
 void	rm_node(t_node *node, t_node **tail, t_node **head);
 void	add_end(t_node **tail, t_node **head, int value);
-void	init_index(t_node **tail);
+void	init_index(t_node **tail, int *sorted_array, int len);
 int		count_node_and_set_default_index(t_node **tail);
 //Operation
 void	sa(t_node **tail);

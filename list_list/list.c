@@ -6,12 +6,34 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/08 19:24:34 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/09 16:11:03 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+void	init_index(t_node **tail, int *sorted_array, int len)
+{
+	int		i;
+	t_node	*current;
+
+	i = 0;
+	current = *tail;
+	while (i < len)
+	{
+		current = *tail;
+		while (1)
+		{
+			if (sorted_array[i] == current->x && current->index == -1)
+				break ;
+			else
+				current = current->next;
+		}
+		current->index = i + 1;
+		i++;
+	}
+	i = 0;
+}
 int	count_node_and_set_default_index(t_node **tail)
 {
 	t_node	*current;
@@ -28,52 +50,7 @@ int	count_node_and_set_default_index(t_node **tail)
 		if (current->x == (*tail)->x)
 			break ;
 	}
-	// printf("\nLen: %d\n", len);
 	return (len);
-}
-
-void	init_index(t_node **tail)
-{
-	t_node	*start;
-	t_node	*min;
-	int		i;
-	int		len;
-	// int		len_cpy;
-
-	start = *tail;
-	len = count_node_and_set_default_index(tail);
-	// len_cpy = len;
-	i = 0;
-	while (i < len)
-	{
-		min = start;
-		while (min->index != -1)
-			min = min->next;
-		(*tail) = start->next;
-		while (42)
-		{
-			if (start->x == (*tail)->x)
-				break ;
-			if ((*tail)->index != -1)
-			{
-				(*tail) = (*tail)->next;
-				continue ;
-			}
-			if (min->x > (*tail)->x)
-				min = (*tail);
-			(*tail) = (*tail)->next;
-		}
-		min->index = i + 1;
-		i++;
-	}
-	start = *tail;
-	while (1)
-	{
-		printf("value: %d index: %d\n", start->x, start->index);
-		start = start->next;
-		if (start == (*tail))
-			break ;
-	}
 }
 
 void	print_left2right(t_node **tail, t_node **head)
@@ -92,7 +69,7 @@ void	print_left2right(t_node **tail, t_node **head)
 	}
 }
 
-void	list_manager(int *array, int amount_numbers)
+void	list_manager(int *array, int amount_numbers, int *sorted_array)
 {
 	t_node	*tail_a;
 	t_node	*tail_b;
@@ -115,5 +92,6 @@ void	list_manager(int *array, int amount_numbers)
 	// print_left2right(&tail_b, &head_b);
 	// init_index(tail_a);
 	count_node_and_set_default_index(&tail_a);
-	init_index(&tail_a);
+	// init_index(&tail_a);
+	init_index(&tail_a, sorted_array, amount_numbers);
 }
