@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:41:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 17:54:58 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/09 20:55:58 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ void	pa(t_node **tail_a, t_node **head_a, t_node **tail_b, t_node **head_b)
 		return ;
 	add_begin(tail_a, head_a, (*tail_b)->x);
 	rm_node((*tail_b), tail_b, head_b);
+	write(1, "pa\n", 3);
 }

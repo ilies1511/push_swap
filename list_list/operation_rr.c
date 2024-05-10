@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 03:57:52 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/07 04:01:47 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/09 21:24:37 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	rr(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b)
 {
-	ra_or_rb(tail_a, head_a);
-	ra_or_rb(tail_b, head_b);
+	ra(tail_a, head_a, 0);
+	rb(tail_b, head_b, 0);
+	write(1, "rr\n", 3);
 }

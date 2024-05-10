@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:47:46 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 17:19:41 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/10 02:48:42 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,18 @@ void	rm_node(t_node *node, t_node **tail, t_node **head)
 		node->prev->next = node->next;
 		node->next->prev = node->prev;
 	}
-	if (node == (*tail))
+	else if (node == (*tail))
+	{
+		(*head)->prev = node->next;
+		node->next->prev = (*head);
 		*tail = node->next;
+	}
 	else if (node == (*head))
-		*head = node->prev;
+	{
+		(*tail)->prev = (*head)->prev;
+		(*head)->prev = (*tail);
+		*head = (*head)->prev;
+	}
 	free(node);
 	node = NULL;
 }

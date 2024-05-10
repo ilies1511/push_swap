@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/09 16:08:27 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/10 18:26:43 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,18 @@
 # include <limits.h>
 # include "./libft/libft.h"
 
+// typedef struct s_extrems
+// {
+// 	t_node	*start;
+// 	t_node	*end;
+// }			t_extrems;
+
 typedef struct s_node
 {
+	void			*content;
 	int				x;
+	int				target_pos;
+	int				pos;
 	int				index;
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -50,16 +59,27 @@ t_node	*init_list(t_node **tail, t_node **head, int value);
 void	deallocate_list(t_node **tail, t_node **head);
 void	rm_node(t_node *node, t_node **tail, t_node **head);
 void	add_end(t_node **tail, t_node **head, int value);
+int		count_node(t_node **tail, t_node **head);
+//Algo
 void	init_index(t_node **tail, int *sorted_array, int len);
-int		count_node_and_set_default_index(t_node **tail);
+t_node	*find_highest(t_node **tail, int amount_numbers);
+t_node	*find_lowest(t_node **tail, int amount_numbers);
+void	tiny_sort(t_node **tail, t_node **head);
+int		sort_checker(t_node **tail, t_node **head);
+void	p2b(t_node **tail_a, t_node **head_a, t_node **tail_b, t_node **head_b);
+void	current_position(t_node **tail, t_node **head);
+void	find_target_pos(t_node **t_a, t_node **h_a, t_node **t_b, t_node **h_b);
 //Operation
-void	sa(t_node **tail);
-void	sb(t_node **tail_b);
+void	sa(t_node **tail, int flag);
+void	sb(t_node **tail_b, int flag);
 void	ss(t_node **tail_a, t_node **tail_b);
 void	pb(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);
 void	pa(t_node **tail_a, t_node **head_a, t_node **tail_b, t_node **head_b);
-void	ra_or_rb(t_node **tail, t_node **head);
+void	ra(t_node **tail, t_node **head, int flag);
+void	rb(t_node **tail, t_node **head, int flag);
 void	rr(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);
-void	rra_or_rrb(t_node **tail, t_node **head);
+void	rra(t_node **tail, t_node **head, int flag);
+void	rrb(t_node **tail, t_node **head, int flag);
 void	rrr(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);
+
 #endif
