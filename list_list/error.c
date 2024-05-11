@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:47:46 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/10 02:48:42 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/11 02:21:02 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	deallocate_list(t_node **tail, t_node **head)
 
 void	rm_node(t_node *node, t_node **tail, t_node **head)
 {
+	if (!(*tail) || !(*head))
+		return ;
 	if (node != *tail && node != *head)
 	{
 		node->prev->next = node->next;

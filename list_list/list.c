@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/10 23:53:25 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/11 18:21:28 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,14 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	// 	current = current->next;
 	// 	i++;
 	// }
-	// current = head_b;
-	// while (current->next && current)
-	// {
-	// 	printf("value: %d index: %d current pos: %d\n", current->x, current->index, current->pos);
-	// 	current = current->next;
-	// }
-	// find_target_pos(&tail_a, &head_a, &tail_b, &head_b);
+	current = tail_a;
+	while (current->next != tail_a)
+	{
+		printf("value: %d index: %d current pos: %d\n", current->x, current->index, current->pos);
+		current = current->next;
+	}
+	printf("value: %d index: %d current pos: %d\n", current->x, current->index, current->pos);
+	find_target_pos(&tail_a, &head_a, &tail_b, &head_b);
 }
 
 	// while (tail_b != head_b)
