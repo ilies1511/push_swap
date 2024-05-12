@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_manipulator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 04:41:57 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/11 18:20:39 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/12 02:28:18 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_node	*init_list(t_node **tail, t_node **head, int value)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 	{
-		deallocate_list(tail, head);
+		// deallocate_list(tail, head);
 		exit (1);
 	}
 	new_node->x = value;
@@ -48,14 +48,14 @@ void	add_end(t_node **tail, t_node **head, int value)
 	else
 	{
 		new_node->next = (*tail);
-		new_node->prev = (*head);
-		(*head)->next = new_node;
+		new_node->prev = (*tail)->prev;
+		(*tail)->prev->next = new_node;
 		(*tail)->prev = new_node;
 		*head = new_node;
 	}
 }
 
-void	add_begin(t_node **tail, t_node **head, int value)
+void	add_begin(t_node **tail, int value)
 {
 	t_node	*new_node;
 
@@ -71,12 +71,13 @@ void	add_begin(t_node **tail, t_node **head, int value)
 		new_node->next = new_node;
 		new_node->prev = new_node;
 		*tail = new_node;
+		(*tail)->prev = new_node;
 	}
 	else
 	{
+		(*tail)->prev->next = new_node;
+		new_node->prev = (*tail)->prev;
 		new_node->next = (*tail);
-		new_node->prev = (*head);
-		(*head)->next = new_node;
 		(*tail)->prev = new_node;
 		*tail = new_node;
 	}

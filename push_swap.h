@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/10 18:26:43 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/12 02:28:36 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,27 @@ int		*array_dub(int *array, int amount_numbers);
 //Utils Linked List
 void	list_manager(int *array, int amount_numbers, int *sorted_array);
 void	print_left2right(t_node **tail, t_node **head);
-void	add_begin(t_node **tail, t_node **head, int value);
+void	add_begin(t_node **tail, int value);
 t_node	*init_list(t_node **tail, t_node **head, int value);
 void	deallocate_list(t_node **tail, t_node **head);
-void	rm_node(t_node *node, t_node **tail, t_node **head);
+void	rm_node(t_node *node, t_node **tail);
 void	add_end(t_node **tail, t_node **head, int value);
-int		count_node(t_node **tail, t_node **head);
+int		count_node(t_node **tail);
 //Algo
 void	init_index(t_node **tail, int *sorted_array, int len);
 t_node	*find_highest(t_node **tail, int amount_numbers);
 t_node	*find_lowest(t_node **tail, int amount_numbers);
 void	tiny_sort(t_node **tail, t_node **head);
-int		sort_checker(t_node **tail, t_node **head);
-void	p2b(t_node **tail_a, t_node **head_a, t_node **tail_b, t_node **head_b);
-void	current_position(t_node **tail, t_node **head);
-void	find_target_pos(t_node **t_a, t_node **h_a, t_node **t_b, t_node **h_b);
+int		sort_checker(t_node **tail);
+void	p2b(t_node **tail_a, t_node **tail_b);
+void	current_position(t_node **tail);
+void	find_target_pos(t_node **t_a, t_node **t_b);
 //Operation
 void	sa(t_node **tail, int flag);
 void	sb(t_node **tail_b, int flag);
 void	ss(t_node **tail_a, t_node **tail_b);
-void	pb(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);
-void	pa(t_node **tail_a, t_node **head_a, t_node **tail_b, t_node **head_b);
+void	pb(t_node **tail_a, t_node **tail_b);
+void	pa(t_node **tail_a, t_node **tail_b);
 void	ra(t_node **tail, t_node **head, int flag);
 void	rb(t_node **tail, t_node **head, int flag);
 void	rr(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);

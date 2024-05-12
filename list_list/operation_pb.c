@@ -3,25 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   operation_pb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:21:36 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/10 23:53:05 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/13 00:50:56 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	pb(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b)
+void	pb(t_node **tail_a, t_node **tail_b)
 {
+	// t_node *target;
+	t_node	*next_tail;
+	t_node	*end_b;
+
+	next_tail = (*tail_a)->next;
+	// target = *tail_a;
 	if (!(*tail_a))
 		return ;
-	printf("tail_a %p \t\n", tail_a);
-	printf("tail_b %p \t\n", tail_b);
-	add_begin(tail_b, head_b, (*tail_a)->x); // tail, head, value
-	rm_node((*tail_a), tail_a, head_a);
+	if (!(*tail_b))
+	{
+		*tail_b = (*tail_a);
+		(*tail_a)->next->prev = (*tail_a)->prev;
+		(*tail_a)->prev->next = next_tail;
+		(*tail_a)->prev = (*tail_a);
+		(*tail_a)->next = (*tail_a);
+		*tail_a = next_tail;
+	}
+	else
+	{
+		end_b = (*tail_b)->prev;
+		(*tail_a)->next->prev = (*tail_a)->prev;
+		(*tail_a)->prev->next = next_tail;
+		(*tail_a)->next = (*tail_b);
+		(*tail_a)->prev = end_b;
+		end_b->next = (*tail_a);
+		*tail_b = (*tail_a);
+		*tail_a = next_tail;
+	}
 	write(1, "pb\n", 3);
 }
+// void	pb(t_node **tail_a, t_node **tail_b)
+// {
+// 	if (!(*tail_a))
+// 		return ;
+// 	add_begin(tail_b, (*tail_a)->x); // tail, head, value
+// 	rm_node((*tail_a), &(*tail_a));
+// 	write(1, "pb\n", 3);
+// }
 
 // void	pb(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b)
 // {
@@ -32,3 +62,15 @@ void	pb(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b)
 // 	rm_node((*tail_a), tail_a, head_a);
 // 	write(1, "pb\n", 3);
 // }
+
+
+//Dieser Block funktioniert wie er sollte‚
+	// if (!(*tail_b))
+	// {
+	// 	*tail_b = (*tail_a);
+	// 	(*tail_a)->next->prev = (*tail_a)->prev;
+	// 	(*tail_a)->prev->next = next_tail;
+	// 	(*tail_a)->prev = (*tail_a);
+	// 	(*tail_a)->next = (*tail_a);
+	// 	*tail_a = next_tail;
+	// }

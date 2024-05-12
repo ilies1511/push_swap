@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   utils_algo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 18:06:43 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/10 04:49:47 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/12 01:11:34 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	sort_checker(t_node **tail, t_node **head)
+int	sort_checker(t_node **tail)
 {
 	t_node	*current;
 	int		len;
 	int		i;
 
-	len = count_node(tail, head);
+	len = count_node(tail);
 	current = (*tail);
 	i = 0;
 	exit (1);
 	while (i < len)
 	{
-		if ((*tail)->x > (*tail)->next->x)
+		if (current->x > current->next->x)
 			return (1);
-		(*tail) = (*tail)->next;
+		current = current->next;
 		i++;
 	}
 	return (0);

@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 01:04:03 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/10 23:33:41 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/12 02:03:29 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	current_position(t_node **tail, t_node **head)
+void	current_position(t_node **tail)
 {
 	t_node	*current;
 	int		len;
 	int		i;
 
-	if (!(*tail) || !(*head))
+	if (!(*tail))
 		return ;
 	i = 0;
-	len = count_node(tail, head);
+	len = count_node(tail);
 	current = *tail;
 	while (i < len)
 	{
@@ -31,19 +31,21 @@ void	current_position(t_node **tail, t_node **head)
 	}
 }
 
-void	p2b(t_node **tail_a, t_node **head_a, t_node **tail_b, t_node **head_b)
+void	p2b(t_node **tail_a, t_node **tail_b)
 {
 	int	len;
 
-	len = count_node(tail_a, head_a);
+	if (!(*tail_a))
+		return ;
+	len = count_node(tail_a);
 	while (len > 3)
 	{
-		pb(tail_a, tail_b, head_a, head_b);
+		pb(tail_a, tail_b);
 		len--;
 	}
 }
 
-void	find_target_pos(t_node **t_a, t_node **h_a, t_node **t_b, t_node **h_b)
+void	find_target_pos(t_node **t_a, t_node **t_b)
 {
 	int		best_target_pos;
 	int		delta_index;
@@ -55,8 +57,10 @@ void	find_target_pos(t_node **t_a, t_node **h_a, t_node **t_b, t_node **h_b)
 	int		i;
 	// int		var[5];
 
-	len_a = count_node(t_a, h_a);
-	len_b = count_node(t_b, h_b);
+	if (!(*t_a) || !(*t_b))
+		return ;
+	len_a = count_node(t_a);
+	len_b = count_node(t_b);
 	current_b = *t_b;
 	current_a = *t_a;
 	if (current_a->index - current_b->index > 0)

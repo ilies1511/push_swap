@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   operation_pa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:41:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/09 20:55:58 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/12 01:50:54 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	pa(t_node **tail_a, t_node **head_a, t_node **tail_b, t_node **head_b)
+void	pa(t_node **tail_a, t_node **tail_b)
 {
 	if (!(*tail_b))
 		return ;
-	add_begin(tail_a, head_a, (*tail_b)->x);
-	rm_node((*tail_b), tail_b, head_b);
+	add_begin(tail_a, (*tail_b)->x);
+	rm_node((*tail_b), tail_b);
 	write(1, "pa\n", 3);
 }
