@@ -6,7 +6,7 @@
 /*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/13 00:51:22 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/13 00:53:56 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	printf("Amount Nodes: %d\n", count_node(&tail_a));
 	current_position(&tail_a);
 	current_position(&tail_b);
-	// p2b(&tail_a, &tail_b);
-	pb(&tail_a, &tail_b);
-	pb(&tail_a, &tail_b);
-	pb(&tail_a, &tail_b);
+	p2b(&tail_a, &tail_b);
+	// pb(&tail_a, &tail_b);
+	// pb(&tail_a, &tail_b);
+	// pb(&tail_a, &tail_b);
 	printf("\nPrint array of stack b: \n");
 	current = tail_b;
 	while (1 && tail_b)

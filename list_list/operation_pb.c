@@ -6,7 +6,7 @@
 /*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:21:36 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/13 00:50:56 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/13 01:31:35 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,60 @@
 
 void	pb(t_node **tail_a, t_node **tail_b)
 {
-	// t_node *target;
 	t_node	*next_tail;
 	t_node	*end_b;
 
 	next_tail = (*tail_a)->next;
-	// target = *tail_a;
 	if (!(*tail_a))
 		return ;
+	(*tail_a)->next->prev = (*tail_a)->prev;
+	(*tail_a)->prev->next = next_tail;
 	if (!(*tail_b))
 	{
 		*tail_b = (*tail_a);
-		(*tail_a)->next->prev = (*tail_a)->prev;
-		(*tail_a)->prev->next = next_tail;
 		(*tail_a)->prev = (*tail_a);
 		(*tail_a)->next = (*tail_a);
-		*tail_a = next_tail;
 	}
 	else
 	{
 		end_b = (*tail_b)->prev;
-		(*tail_a)->next->prev = (*tail_a)->prev;
-		(*tail_a)->prev->next = next_tail;
 		(*tail_a)->next = (*tail_b);
 		(*tail_a)->prev = end_b;
 		end_b->next = (*tail_a);
 		*tail_b = (*tail_a);
-		*tail_a = next_tail;
 	}
+	*tail_a = next_tail;
 	write(1, "pb\n", 3);
 }
+
+// Wokring but too many lines
 // void	pb(t_node **tail_a, t_node **tail_b)
 // {
+// 	t_node	*next_tail;
+// 	t_node	*end_b;
+
+// 	next_tail = (*tail_a)->next;
 // 	if (!(*tail_a))
 // 		return ;
-// 	add_begin(tail_b, (*tail_a)->x); // tail, head, value
-// 	rm_node((*tail_a), &(*tail_a));
-// 	write(1, "pb\n", 3);
-// }
-
-// void	pb(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b)
-// {
 // 	if (!(*tail_b))
-// 		init_list(tail_b, head_b, (*tail_a)->x);
+// 	{
+// 		*tail_b = (*tail_a);
+// 		(*tail_a)->next->prev = (*tail_a)->prev;
+// 		(*tail_a)->prev->next = next_tail;
+// 		(*tail_a)->prev = (*tail_a);
+// 		(*tail_a)->next = (*tail_a);
+// 	}
 // 	else
-// 		add_begin(tail_b, head_b, (*tail_a)->x);
-// 	rm_node((*tail_a), tail_a, head_a);
+// 	{
+// 		end_b = (*tail_b)->prev;
+// 		(*tail_a)->next->prev = (*tail_a)->prev;
+// 		(*tail_a)->prev->next = next_tail;
+// 		(*tail_a)->next = (*tail_b);
+// 		(*tail_a)->prev = end_b;
+// 		end_b->next = (*tail_a);
+// 		*tail_b = (*tail_a);
+// 	}
+// 	*tail_a = next_tail;
 // 	write(1, "pb\n", 3);
 // }
 
