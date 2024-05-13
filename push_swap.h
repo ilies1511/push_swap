@@ -6,7 +6,7 @@
 /*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/12 02:28:36 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/13 17:01:29 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,22 @@ int		count_node(t_node **tail);
 void	init_index(t_node **tail, int *sorted_array, int len);
 t_node	*find_highest(t_node **tail, int amount_numbers);
 t_node	*find_lowest(t_node **tail, int amount_numbers);
-void	tiny_sort(t_node **tail, t_node **head);
+void	tiny_sort(t_node **tail);
 int		sort_checker(t_node **tail);
 void	p2b(t_node **tail_a, t_node **tail_b);
 void	current_position(t_node **tail);
 void	find_target_pos(t_node **t_a, t_node **t_b);
 //Operation
 void	sa(t_node **tail, int flag);
-void	sb(t_node **tail_b, int flag);
+void	sb(t_node **tail, int flag);
 void	ss(t_node **tail_a, t_node **tail_b);
 void	pb(t_node **tail_a, t_node **tail_b);
 void	pa(t_node **tail_a, t_node **tail_b);
-void	ra(t_node **tail, t_node **head, int flag);
-void	rb(t_node **tail, t_node **head, int flag);
-void	rr(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);
-void	rra(t_node **tail, t_node **head, int flag);
-void	rrb(t_node **tail, t_node **head, int flag);
-void	rrr(t_node **tail_a, t_node **tail_b, t_node **head_a, t_node **head_b);
+void	ra(t_node **tail, int flag);
+void	rb(t_node **tail, int flag);
+void	rr(t_node **tail_a, t_node **tail_b);
+void	rra(t_node **tail, int flag);
+void	rrb(t_node **tail, int flag);
+void	rrr(t_node **tail_a, t_node **tail_b);
 
 #endif

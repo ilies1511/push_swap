@@ -6,7 +6,7 @@
 /*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 18:06:43 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/12 01:11:34 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/13 17:01:14 by ilies1511        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	sort_checker(t_node **tail)
 	return (0);
 }
 
-void	tiny_sort(t_node **tail, t_node **head)
+void	tiny_sort(t_node **tail)
 {
 	t_node	*current;
 	t_node	*highest;
@@ -42,9 +42,9 @@ void	tiny_sort(t_node **tail, t_node **head)
 	current = *tail;
 	highest = find_highest(tail, 3);
 	if (highest == current)
-		ra(tail, head, 1);
+		ra(tail, 1);
 	else if (highest == current->next)
-		rra(tail, head, 1);
+		rra(tail, 1);
 	// current = *tail;
 	if ((*tail)->x > (*tail)->next->x)
 		sa(tail, 1);
