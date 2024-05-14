@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 01:04:03 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/14 02:06:06 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/14 22:52:39 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,222 @@ void	p2b(t_node **tail_a, t_node **tail_b)
 	}
 }
 
+// int	find_cost_a(t_node *node_a)
+// {
+// 	int		len;
+// 	int		middle_b;
+// 	t_node	*current;
+// 	int		flag;
+
+// 	flag = 0;
+// 	if (node_a->pos * 2 > len)
+// 		node_a->cost_a = len - node_a->pos;
+// 	else if (node_a->pos * 2 < len)
+// 	{
+// 		node_a->cost_a = node_a->pos;
+// 		flag = 1;
+// 	}
+// 	return (flag);
+// }
+
+// int	find_cost_b(t_node *node_b)
+// {
+// 	int		len;
+// 	int		middle_b;
+// 	t_node	*current;
+// 	int		flag;
+
+// 	flag = 0;
+// 	if (node_b->pos * 2 > len)
+// 		node_b->cost_b = len - node_b->pos;
+// 	else if (node_b->pos * 2 < len)
+// 	{
+// 		node_b->cost_b = node_b->pos;
+// 		flag = 1;
+// 	}
+// 	return (flag);
+// }
+
+void	rot_stack_b(t_node **tail, int cost)
+{
+	if (cost > 0)
+	{
+		while (cost--)
+			rb(tail, 1);
+	}
+	else
+	{
+		while (cost++)
+			rrb(tail, 1);
+	}
+}
+void	rot_stack_a(t_node **tail, int cost)
+{
+	if (cost > 0)
+	{
+		while (cost--)
+			ra(tail, 1);
+	}
+	else
+	{
+		while (cost++)
+			rra(tail, 1);
+	}
+}
+
+// void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest)
+// {
+// 	t_node	*current_a;
+// 	t_node	*current_b;
+
+// 	current_a = *tail_a;
+// 	current_a = *tail_b;
+// 	while (cheapest->cost_a-- > 0 && cheapest->cost_b-- > 0)
+// 		rr(tail_a, tail_b);
+// 	while (cheapest->cost_a++ < 0 && cheapest->cost_b++ < 0)
+// 		rrr(tail_a, tail_b);
+// 	// if (cheapest->cost_a > 0)
+// 	// {
+// 	// 	while (cheapest->cost_a--)
+// 	// 		ra(tail_a, 1);
+// 	// }
+// 	// else
+// 	// {
+// 	// 	while (cheapest->cost_a++)
+// 	// 		rra(tail_a, 1);
+// 	// }
+// 	rot_stack(tail_a, cheapest->cost_a);
+// 	rot_stack(tail_b, cheapest->cost_b);
+// 	// if (cheapest->cost_b > 0)
+// 	// {
+// 	// 	while (cheapest->cost_b--)
+// 	// 		rb(tail_b, 1);
+// 	// }
+// 	// else
+// 	// 	while (cheapest->cost_b++)
+// 	// 		rrb(tail_b, 1);
+// 	pa(tail_a, tail_b);
+// }
+void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest)
+{
+	t_node	*current_a;
+	t_node	*current_b;
+
+	current_a = *tail_a;
+	current_b = *tail_b;
+	while (cheapest->cost_a-- > 0 && cheapest->cost_b-- > 0)
+		rr(tail_a, tail_b);
+	while (cheapest->cost_a++ < 0 && cheapest->cost_b++ < 0)
+		rrr(tail_a, tail_b);
+	rot_stack_a(tail_a, cheapest->cost_a);
+	rot_stack_b(tail_b, cheapest->cost_b);
+	pa(tail_a, tail_b);
+}
+
+int	absoluter(int number)
+{
+	if (number < 0)
+		number = number * (-1);
+	return (number);
+}
+
+void	find_cheapest(t_node **tail_a, t_node **tail_b)
+{
+	t_node	*current_b;
+	int		cheapest;
+	int		len_b;
+	int		i;
+	t_node	*cheapest_node;
+
+	i = 0;
+	len_b = count_node(tail_b);
+	current_b = *tail_b;
+	cheapest = INT_MAX;
+	while (i < len_b)
+	{
+		if (absoluter(current_b->cost_a)
+			+ absoluter(current_b->cost_b) < cheapest)
+		{
+			cheapest = current_b->cost_a + current_b->cost_b;
+			cheapest_node = current_b;
+		}
+		current_b = current_b->next;
+		i++;
+	}
+	do_cheapest_moves(tail_a, tail_b, cheapest_node);
+}
+
+void	travel_costs(t_node **tail_a, t_node **tail_b)
+{
+	int		len_b;
+	int		len_a;
+	int		i;
+	t_node	*current_b;
+	t_node	*current_a;
+
+	current_position(tail_a);
+	current_position(tail_b);
+	len_b = count_node(tail_b);
+	len_a = count_node(tail_a);
+	i = 0;
+	current_a = *tail_a;
+	current_b = *tail_b;
+	while (i < len_b)
+	{
+		current_b->cost_b = current_b->pos;
+		if (current_b->pos * 2 > len_b)
+			current_b->cost_b = (len_b - current_b->pos) * (-1);
+		current_b->cost_a = current_b->target_pos;
+		if (current_b->target_pos * 2 > len_a)
+			current_b->cost_a = (len_a - current_b->target_pos) * (-1);
+		current_b = current_b->next;
+		i++;
+	}
+	// find_cheapest(tail_a, tail_b);
+}
+// void	travel_costs(t_node **tail_a, t_node **tail_b)
+// {
+// 	// int		cheapest;
+// 	int		len_b;
+// 	int		len_a;
+// 	int		i;
+// 	int		middle_a;
+// 	int		middle_b;
+// 	t_node	*current_b;
+// 	t_node	*current_a;
+
+// 	current_position(tail_a);
+// 	current_position(tail_b);
+// 	len_b = count_node(tail_b);
+// 	len_a = count_node(tail_a);
+// 	i = 0;
+// 	current_a = *tail_a;
+// 	current_b = *tail_b;
+// 	while (i < len_b)
+// 	{
+// 		if (current_b->pos * 2 > len_b)
+// 			current_b->cost_b = len_b - current_b->pos;
+// 		else if (current_b->pos * 2 < len_b)
+// 			current_b->cost_b = current_b->pos;
+// 		//Now for b
+// 		if (current_b->target_pos * 2 > len_b)
+// 			current_b->cost_a = len_b - current_b->target_pos;
+// 		else if (current_b->target_pos * 2 < len_b)
+// 			current_b->cost_a = current_b->target_pos;
+// 		if (current_b->cost_a < 0)
+// 			current_b->cost_a = current_b->cost_a * (-1);
+// 		if (current_b->cost_b < 0)
+// 			current_b->cost_b = current_b->cost_b * (-1);
+// 		cheapest = current_b->cost_a + current_b->cost_b;
+// 	}
+// }
+
 void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 {
 	while (data->i++ < data->len_b)
 	{
 		data->k = 0;
-		if (cur_a->index - cur_b->index >= 0)
-			data->delta_index = cur_a->index - cur_b->index;
+		data->delta_index = INT_MAX;
 		cur_a = *t_a;
 		while (data->k++ < data->len_a)
 		{
@@ -72,7 +281,37 @@ void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 		}
 		cur_b = cur_b->next;
 	}
+	free(data);
+	data = NULL;
 }
+// void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
+// {
+// 	while (data->i++ < data->len_b)
+// 	{
+// 		data->k = 0;
+// 		if (cur_a->index - cur_b->index >= 0)
+// 			data->delta_index = cur_a->index - cur_b->index;
+// 		cur_a = *t_a;
+// 		while (data->k++ < data->len_a)
+// 		{
+// 			if (cur_b->index > find_highest(t_a)->index)
+// 			{
+// 				cur_b->target_pos = find_lowest(t_a)->pos;
+// 				break ;
+// 			}
+// 			else if (cur_b->index < find_lowest(t_a)->index)
+// 			{
+// 				cur_b->target_pos = find_highest(t_a)->pos;
+// 				break ;
+// 			}
+// 			else if (cur_a->index - cur_b->index >= 0
+// 				&& cur_a->index - cur_b->index < data->delta_index)
+// 				cur_b->target_pos = cur_a->pos;
+// 			cur_a = cur_a->next;
+// 		}
+// 		cur_b = cur_b->next;
+// 	}
+// }
 
 void	find_target_pos(t_node **t_a, t_node **t_b)
 {
