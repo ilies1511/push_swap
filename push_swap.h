@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/13 17:01:29 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/13 23:50:09 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "./libft/libft.h"
+
+typedef struct s_find_target_pos
+{
+	int		delta_index;
+	int		len_a;
+	int		len_b;
+	int		k;
+	int		i;
+}			t_target;
 
 // typedef struct s_extrems
 // {
@@ -62,8 +71,8 @@ void	add_end(t_node **tail, t_node **head, int value);
 int		count_node(t_node **tail);
 //Algo
 void	init_index(t_node **tail, int *sorted_array, int len);
-t_node	*find_highest(t_node **tail, int amount_numbers);
-t_node	*find_lowest(t_node **tail, int amount_numbers);
+t_node	*find_highest(t_node **tail);
+t_node	*find_lowest(t_node **tail);
 void	tiny_sort(t_node **tail);
 int		sort_checker(t_node **tail);
 void	p2b(t_node **tail_a, t_node **tail_b);

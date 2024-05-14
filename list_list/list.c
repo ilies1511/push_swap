@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/13 19:42:10 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/13 22:43:40 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,21 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 			break ;
 	}
 	p2b(&tail_a, &tail_b);
+	pa(&tail_a, &tail_b);
 	// pb(&tail_a, &tail_b);
 	// pb(&tail_a, &tail_b);
 	// pb(&tail_a, &tail_b);
+	printf("\nPrint array of stack a: \n");
+	current_position(&tail_a);
+	current = tail_a;
+	while (1 && tail_a)
+	{
+		printf("value: %d index: %d current pos: %d\n", current->x, current->index, current->pos);
+		current = current->next;
+		if (current == tail_a)
+			break ;
+	}
+	current_position(&tail_b);
 	printf("\nPrint array of stack b: \n");
 	current = tail_b;
 	while (1 && tail_b)
@@ -122,15 +134,6 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 			break ;
 	}
 
-	printf("\nPrint array of stack a: \n");
-	current = tail_a;
-	while (1 && tail_a)
-	{
-		printf("value: %d index: %d current pos: %d\n", current->x, current->index, current->pos);
-		current = current->next;
-		if (current == tail_a)
-			break ;
-	}
 	// pa(&tail_a, &tail_b);
 	// printf("\nPrint array of stack a after pa: \n");
 	// current = tail_a;
@@ -144,6 +147,7 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	current_position(&tail_a);
 	current_position(&tail_b);
 	find_target_pos(&tail_a, &tail_b);
+	printf("\nPost Targe Position, stack B\n");
 	current = tail_b;
 	while (1 && tail_b)
 	{
@@ -152,13 +156,13 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 		if (current == tail_b)
 			break ;
 	}
-	printf("\nPrint array of stack a: \n");
-	current = tail_a;
-	while (1 && tail_a)
-	{
-		printf("value: %d index: %d current pos: %d\n", current->x, current->index, current->pos);
-		current = current->next;
-		if (current == tail_a)
-			break ;
-	}
+	// printf("\nPrint array of stack a: \n");
+	// current = tail_a;
+	// while (1 && tail_a)
+	// {
+	// 	printf("value: %d index: %d current pos: %d\n", current->x, current->index, current->pos);
+	// 	current = current->next;
+	// 	if (current == tail_a)
+	// 		break ;
+	// }
 }

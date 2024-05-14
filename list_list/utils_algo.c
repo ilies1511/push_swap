@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_algo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 18:06:43 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/13 17:01:14 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/13 22:32:59 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	tiny_sort(t_node **tail)
 	if (!(*tail))
 		return ;
 	current = *tail;
-	highest = find_highest(tail, 3);
+	highest = find_highest(tail);
 	if (highest == current)
 		ra(tail, 1);
 	else if (highest == current->next)
@@ -79,16 +79,18 @@ void	init_index(t_node **tail, int *sorted_array, int len)
 	}
 }
 
-t_node	*find_highest(t_node **tail, int amount_numbers)
+t_node	*find_highest(t_node **tail)
 {
 	t_node	*highest;
 	t_node	*current;
 	int		i;
+	int		len;
 
 	i = 0;
+	len = count_node(tail);
 	current = *tail;
 	highest = *tail;
-	while (i < amount_numbers)
+	while (i < len)
 	{
 		if (highest->x < current->x)
 			highest = current;
@@ -98,17 +100,38 @@ t_node	*find_highest(t_node **tail, int amount_numbers)
 	// printf("Check highest node\nvalue: %d index: %d\n", highest->x, highest->index);
 	return (highest);
 }
+// t_node	*find_highest(t_node **tail, int amount_numbers)
+// {
+// 	t_node	*highest;
+// 	t_node	*current;
+// 	int		i;
 
-t_node	*find_lowest(t_node **tail, int amount_numbers)
+// 	i = 0;
+// 	current = *tail;
+// 	highest = *tail;
+// 	while (i < amount_numbers)
+// 	{
+// 		if (highest->x < current->x)
+// 			highest = current;
+// 		current = current->next;
+// 		i++;
+// 	}
+// 	// printf("Check highest node\nvalue: %d index: %d\n", highest->x, highest->index);
+// 	return (highest);
+// }
+
+t_node	*find_lowest(t_node **tail)
 {
 	t_node	*current;
 	t_node	*lowest;
 	int		i;
+	int		len;
 
+	len = count_node(tail);
 	i = 0;
 	current = *tail;
 	lowest = *tail;
-	while (i < amount_numbers)
+	while (i < len)
 	{
 		if (lowest->x > current->x)
 			lowest = current;
@@ -118,3 +141,24 @@ t_node	*find_lowest(t_node **tail, int amount_numbers)
 	// printf("Check lowest node\nvalue: %d index: %d\n", lowest->x, lowest->index);
 	return (lowest);
 }
+// t_node	*find_lowest(t_node **tail, int amount_numbers)
+// {
+// 	t_node	*current;
+// 	t_node	*lowest;
+// 	int		i;
+// 	// int		len;
+
+// 	// len = count_node(tail);
+// 	i = 0;
+// 	current = *tail;
+// 	lowest = *tail;
+// 	while (i < amount_numbers)
+// 	{
+// 		if (lowest->x > current->x)
+// 			lowest = current;
+// 		current = current->next;
+// 		i++;
+// 	}
+// 	// printf("Check lowest node\nvalue: %d index: %d\n", lowest->x, lowest->index);
+// 	return (lowest);
+// }
