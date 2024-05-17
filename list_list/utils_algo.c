@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 18:06:43 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/14 22:41:32 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/17 23:17:51 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	sort_checker(t_node **tail)
 	int		len;
 	int		i;
 
+	if ((*tail)->next == (*tail))
+		return (1);
 	len = count_node(tail);
 	current = (*tail);
 	i = 0;
@@ -26,6 +28,8 @@ int	sort_checker(t_node **tail)
 		if (current->index > current->next->index)
 			return (0);
 		current = current->next;
+		if (current->next == (*tail))
+			break ;
 		i++;
 	}
 	return (1);
@@ -44,7 +48,7 @@ void	tiny_sort(t_node **tail)
 		ra(tail, 1);
 	else if (highest == current->next)
 		rra(tail, 1);
-	// current = *tail;
+	current = *tail;
 	if ((*tail)->x > (*tail)->next->x)
 		sa(tail, 1);
 }

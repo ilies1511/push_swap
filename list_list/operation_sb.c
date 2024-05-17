@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_sb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:14:22 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/13 17:36:13 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/17 01:28:32 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	sb(t_node **tail, int flag)
 		return ;
 	len = count_node(tail);
 	if (len < 2)
-		ra(tail, 0);
+		return ;
+	if (len == 2)
+		rb(tail, 0);
 	else
 	{
 		first = (*tail);
@@ -38,6 +40,35 @@ void	sb(t_node **tail, int flag)
 	if (flag == 1)
 		write(1, "sb\n", 3);
 }
+
+// void	sb(t_node **tail, int flag)
+// {
+// 	t_node	*first;
+// 	t_node	*second;
+// 	int		len;
+
+// 	if (!(*tail))
+// 		return ;
+// 	len = count_node(tail);
+// 	if (len < 2)
+// 		ra(tail, 0);
+// 	else
+// 	{
+// 		first = (*tail);
+// 		second = (*tail)->next;
+// 		first->next = second->next;
+// 		first->prev->next = second;
+// 		second->prev = first;
+// 		second->prev = first->prev;
+// 		second->next = first;
+// 		first->prev = second;
+// 		*tail = second;
+// 	}
+// 	if (flag == 1)
+// 		write(1, "sb\n", 3);
+// }
+
+
 // void	sb(t_node **tail_b, int flag)
 // {
 // 	int	temp;

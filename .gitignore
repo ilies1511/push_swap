@@ -1,0 +1,12 @@
+/push_swap_visualizer/
+.DS_Store
+*.o
+*.out
+*.exe
+*.tmp
+*.temp
+*.log
+/build/
+bin/
+obj/
+*.d

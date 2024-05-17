@@ -6,11 +6,28 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/14 22:42:11 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/17 23:22:39 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+// Backup Stand: 17.05 00:35
+// int	count_node(t_node **tail)
+// {
+// 	t_node	*current;
+// 	int		len;
+
+// 	if (!(*tail))
+// 		return (0);
+// 	len = 0;
+// 	current = *tail;
+// 	while (current->next != *tail)
+// 	{
+// 		len++;
+// 		current = current->next;
+// 	}
+// 	return (len + 1);
+// }
 
 int	count_node(t_node **tail)
 {
@@ -21,13 +38,29 @@ int	count_node(t_node **tail)
 		return (0);
 	len = 0;
 	current = *tail;
-	while (current->next != *tail)
+	while (current->next && current->next != *tail)
 	{
 		len++;
 		current = current->next;
 	}
 	return (len + 1);
 }
+// int	count_node(t_node **tail)
+// {
+// 	t_node	*current;
+// 	int		len;
+
+// 	if (!(*tail))
+// 		return (0);
+// 	len = 0;
+// 	current = *tail;
+// 	while (current->next != *tail)
+// 	{
+// 		len++;
+// 		current = current->next;
+// 	}
+// 	return (len + 1);
+// }
 
 // int	count_node(t_node **tail, t_node **head)
 // {
@@ -62,6 +95,38 @@ void	print_left2right(t_node **tail, t_node **head)
 	}
 }
 
+int target_value(t_node *a, int i)
+{
+	while(a->pos != i)
+		a = a->next;
+	return (a->x);
+}
+void	out_put_a(t_node *a)
+{
+	int	i;
+	int	len;
+	// while (i < 7)
+	// {
+	// 	printf("%i ", a->x);
+	// 	a = a->next;
+	// 	i++;
+	// }
+	// printf("\n");
+	// while (a->pos != 0)
+	// 	a = a->next;
+	i = 0;
+	len = count_node(&a);
+	while (i < len)
+	{
+		// printf("value: %d index: %d current pos: %d target_pos: %d\n", a->x, a->index, a->pos, a->target_pos);
+		printf("%i ", a->x);
+		a = a->next;
+		i++;
+	}
+	// printf("\n");
+	printf("\n");
+}
+
 void	list_manager(int *array, int amount_numbers, int *sorted_array)
 {
 	t_node	*tail_a;
@@ -69,7 +134,9 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	t_node	*head_a;
 	t_node	*head_b;
 	int		i;
+	// int		k;
 	int		len_b;
+	t_node	*current;
 
 	i = 0;
 	tail_a = NULL;
@@ -79,17 +146,10 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	(void)head_a;
 	(void)head_b;
 	while (i < amount_numbers)
-	{
-		add_begin(&tail_a, array[i]);
-		i++;
-	}
+		add_end(&tail_a, array[i++]);
 	init_index(&tail_a, sorted_array, amount_numbers);
-	// if (!sort_checker(&tail_a))
-	// {
-	// 	printf("Input was already sorted\n");
-	// 	return ;
-	// }
 	p2b(&tail_a, &tail_b);
+	current = tail_a;
 	tiny_sort(&tail_a);
 	len_b = count_node(&tail_b);
 	i = 0;
@@ -98,10 +158,37 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 		current_position(&tail_a);
 		current_position(&tail_b);
 		find_target_pos(&tail_a, &tail_b);
+		// printf("\nPrint array of stack b: \n");
+		// current = tail_b;
+		// k = 0;
+		// while (k < len_b)
+		// {
+			// printf("value: %d index: %d current pos: %d target_pos: %d\n", current->x, current->index, current->pos, current->target_pos);
+		// 	current = current->next;
+		// 	k++;
+		// }
 		travel_costs(&tail_a, &tail_b);
 		find_cheapest(&tail_a, &tail_b);
+		// current_position(&tail_a);
+		// current_position(&tail_b);
+		// out_put_a(tail_a);
+		// out_put_a(tail_b);
 		i++;
 	}
+	// if (find_highest(&tail_a)->index == (tail_a)->index)
+	// 	ra(&tail_a, 1);
+	// rra(&tail_a, 1);
+	// rra(&tail_a, 1);
+	// rra(&tail_a, 1);
+	// rra(&tail_a, 1);
+			// current_position(&tail_a);
+	// while (1)
+	// {
+	// 	if (sort_checker(&tail_a) == 0)
+	// 		break ;
+	// 	rra(&tail_a, 1);
+	// }
+	out_put_a(tail_a);
 	// if (!sort_checker(&tail_a))
 	// {
 	// 	printf("\nEvertythin is sorted...\n");

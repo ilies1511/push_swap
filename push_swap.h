@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/14 22:18:20 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/15 21:14:40 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	add_begin(t_node **tail, int value);
 t_node	*init_list(t_node **tail, t_node **head, int value);
 void	deallocate_list(t_node **tail, t_node **head);
 void	rm_node(t_node *node, t_node **tail);
-void	add_end(t_node **tail, t_node **head, int value);
+void	add_end(t_node **tail, int value);
 int		count_node(t_node **tail);
 //Algo
 void	init_index(t_node **tail, int *sorted_array, int len);
@@ -93,5 +93,7 @@ void	rr(t_node **tail_a, t_node **tail_b);
 void	rra(t_node **tail, int flag);
 void	rrb(t_node **tail, int flag);
 void	rrr(t_node **tail_a, t_node **tail_b);
+
+void	out_put_a(t_node *a);
 
 #endif

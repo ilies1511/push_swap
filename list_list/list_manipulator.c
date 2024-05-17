@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_manipulator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 04:41:57 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/12 02:28:18 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/15 03:02:21 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_node	*init_list(t_node **tail, t_node **head, int value)
 	return (*tail);
 }
 
-void	add_end(t_node **tail, t_node **head, int value)
+void	add_end(t_node **tail, int value)
 {
 	t_node	*new_node;
 
@@ -38,12 +38,12 @@ void	add_end(t_node **tail, t_node **head, int value)
 	if (!new_node)
 		exit(1);
 	new_node->x = value;
-	if (!(*tail) || !(*head))
+	if (!(*tail))
 	{
 		new_node->next = new_node;
 		new_node->prev = new_node;
 		*tail = new_node;
-		*head = new_node;
+		(*tail)->prev = new_node;
 	}
 	else
 	{
@@ -51,7 +51,7 @@ void	add_end(t_node **tail, t_node **head, int value)
 		new_node->prev = (*tail)->prev;
 		(*tail)->prev->next = new_node;
 		(*tail)->prev = new_node;
-		*head = new_node;
+		// *head = new_node;
 	}
 }
 
