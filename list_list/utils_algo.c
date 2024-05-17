@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 18:06:43 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/17 23:17:51 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/18 00:00:26 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ t_node	*find_highest(t_node **tail)
 		current = current->next;
 		i++;
 	}
-	// printf("Check highest node\nvalue: %d index: %d\n", highest->x, highest->index);
 	return (highest);
 }
 // t_node	*find_highest(t_node **tail, int amount_numbers)
@@ -141,7 +140,6 @@ t_node	*find_lowest(t_node **tail)
 		current = current->next;
 		i++;
 	}
-	// printf("Check lowest node\nvalue: %d index: %d\n", lowest->x, lowest->index);
 	return (lowest);
 }
 // t_node	*find_lowest(t_node **tail, int amount_numbers)

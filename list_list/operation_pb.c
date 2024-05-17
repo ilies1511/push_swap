@@ -6,13 +6,13 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:21:36 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/17 01:29:57 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/18 00:11:32 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	pb(t_node **tail_a, t_node **tail_b)
+void	pb(t_node **tail_a, t_node **tail_b, int flag)
 {
 	t_node	*node2push;
 	t_node	*new_tail;
@@ -47,7 +47,8 @@ void	pb(t_node **tail_a, t_node **tail_b)
 		(*tail_b)->prev = node2push;
 	}
 	*tail_b = node2push;
-	write(1, "pb\n", 3);
+	if (flag == 1)
+		write(1, "pb\n", 3);
 }
 
 // void	pb(t_node **tail_a, t_node **tail_b)

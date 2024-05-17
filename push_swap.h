@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/15 21:14:40 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/18 00:11:49 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void	find_cheapest(t_node **tail_a, t_node **tail_b);
 void	sa(t_node **tail, int flag);
 void	sb(t_node **tail, int flag);
 void	ss(t_node **tail_a, t_node **tail_b);
-void	pb(t_node **tail_a, t_node **tail_b);
-void	pa(t_node **tail_a, t_node **tail_b);
+void	pb(t_node **tail_a, t_node **tail_b, int flag);
+void	pa(t_node **tail_a, t_node **tail_b, int flag);
 void	ra(t_node **tail, int flag);
 void	rb(t_node **tail, int flag);
 void	rr(t_node **tail_a, t_node **tail_b);

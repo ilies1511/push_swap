@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/17 23:22:39 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/18 00:27:08 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@
 // 	}
 // 	return (len + 1);
 // }
+void	shifter(t_node **tail_a)
+{
+	int		len;
+	int		i;
+	t_node	*lowest;
+
+	lowest = find_lowest(tail_a);
+	i = 0;
+	len = count_node(tail_a);
+	if (lowest->pos > len / 2)
+	{
+		while (!sort_checker(tail_a))
+			ra(tail_a, 1);
+	}
+	else
+	{
+		while (!sort_checker(tail_a))
+			rra(tail_a, 1);
+	}
+}
 
 int	count_node(t_node **tail)
 {
@@ -60,23 +80,6 @@ int	count_node(t_node **tail)
 // 		current = current->next;
 // 	}
 // 	return (len + 1);
-// }
-
-// int	count_node(t_node **tail, t_node **head)
-// {
-// 	t_node	*current;
-// 	int		len;
-
-// 	if (!(*tail) && (!head))
-// 		return (0);
-// 	len = 1;
-// 	current = *tail;
-// 	while (current != *head)
-// 	{
-// 		len++;
-// 		current = current->next;
-// 	}
-// 	return (len);
 // }
 
 void	print_left2right(t_node **tail, t_node **head)
@@ -188,6 +191,13 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	// 		break ;
 	// 	rra(&tail_a, 1);
 	// }
+
+
+	if (!sort_checker(&tail_a))
+	{
+		shifter(&tail_a);
+		printf("Im Here\n");
+	}
 	out_put_a(tail_a);
 	// if (!sort_checker(&tail_a))
 	// {

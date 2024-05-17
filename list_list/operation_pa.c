@@ -6,13 +6,13 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:41:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/17 01:24:42 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/18 00:11:02 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	pa(t_node **tail_a, t_node **tail_b)
+void	pa(t_node **tail_a, t_node **tail_b, int flag)
 {
 	t_node	*node2push;
 	t_node	*new_tail;
@@ -47,7 +47,8 @@ void	pa(t_node **tail_a, t_node **tail_b)
 		(*tail_a)->prev = node2push;
 	}
 	*tail_a = node2push;
-	write(1, "pa\n", 3);
+	if (flag == 1)
+		write(1, "pa\n", 3);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 01:04:03 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/17 23:05:56 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/18 00:12:32 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	p2b(t_node **tail_a, t_node **tail_b)
 	while (len > 6 && i < len)
 	{
 		if (current_a->index < len / 2)
-			pb(tail_a, tail_b);
+			pb(tail_a, tail_b, 1);
 		else
 			ra(tail_a, 1);
 		i++;
@@ -84,7 +84,7 @@ void	p2b(t_node **tail_a, t_node **tail_b)
 	i = 0;
 	while (i < len)
 	{
-		pb(tail_a, tail_b);
+		pb(tail_a, tail_b, 1);
 		i++;
 	}
 }
@@ -220,7 +220,7 @@ void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest)
 	}
 	rot_stack_a(tail_a, cheapest->cost_a);
 	rot_stack_b(tail_b, cheapest->cost_b);
-	pa(tail_a, tail_b);
+	pa(tail_a, tail_b, 1);
 }
 
 int	absoluter(int number)
