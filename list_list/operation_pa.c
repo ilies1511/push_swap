@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:41:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 00:11:02 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/19 06:43:44 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ void	pa(t_node **tail_a, t_node **tail_b, int flag)
 	t_node	*node2push;
 	t_node	*new_tail;
 	t_node	*end_b;
+	// printf("\033[1;34m");
+	// int	len_before_pa = count_node(tail_a);
 
+	// // printf("vor pa *********************************************************\n");
+	// printf("tail position is = %d ; tail  prev is = %d \n", (*tail_a)->pos, (*tail_a)->prev->pos);
+	// printf("tail value is = %d ; tail  prev value is = %d \n", (*tail_a)->x, (*tail_a)->prev->x);
+	// // printf("*********************************************************\n");
 	new_tail = malloc(sizeof(t_node));
 	if (!new_tail)
 		return ;
@@ -49,6 +55,16 @@ void	pa(t_node **tail_a, t_node **tail_b, int flag)
 	*tail_a = node2push;
 	if (flag == 1)
 		write(1, "pa\n", 3);
+	current_position(tail_a);
+	current_position(tail_b);
+
+	// int	len_after_pa = count_node(tail_a);
+	// printf("len_after_pa = %d\n", len_after_pa);
+	// printf("\033[0m");
+	// printf("nach pa *********************************************************\n");
+	// printf("tail position is = %d ; tail  prev is = %d \n", (*tail_a)->pos, (*tail_a)->prev->pos);
+	// printf("tail value is = %d ; tail  prev value is = %d \n", (*tail_a)->x, (*tail_a)->prev->x);
+	// printf("*********************************************************************\n");
 }
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_rr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 03:57:52 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/13 15:13:56 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/19 01:27:00 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,6 @@ void	rr(t_node **tail_a, t_node **tail_b)
 	ra(tail_a, 0);
 	rb(tail_b, 0);
 	write(1, "rr\n", 3);
+	current_position(tail_a);
+	current_position(tail_b);
 }

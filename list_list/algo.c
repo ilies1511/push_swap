@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 01:04:03 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 00:12:32 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/19 06:42:52 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,46 +22,31 @@ void	current_position(t_node **tail)
 		return ;
 	i = 0;
 	len = count_node(tail);
+	// printf("len = %d\n", len);
 	current = *tail;
+	// while(current && current->next)
+	// {
+	// 	current->pos = i;
+	// 	i++;
+	// 	current = current->next;
+	// 	if (current == *tail)
+	// 		break;
+	// }
 	while (i < len)
 	{
+		//  printf("\033[1;33m");
+		// printf("tail position is = %d ; tail  prev is = %d \n", (*tail)->pos, (*tail)->prev->pos);
+		// printf("tail value is = %d ; tail  prev value is = %d \n", (*tail)->x, (*tail)->prev->x);
+		//  printf("\033[0m");
 		current->pos = i;
+		// 	printf("i = %d\n", i);
+		// printf("current value = %d ; current position = %d \n", current->x, current->pos);
 		current = current->next;
 		i++;
 	}
 }
-//Schecht, funktioniert nicht
-// void	p2b(t_node **tail_a, t_node **tail_b)
-// {
-// 	int		len;
-// 	int		i;
-// 	int		pushed;
-// 	t_node	*current_a;
 
-// 	if (!(*tail_a))
-// 		return ;
-// 	i = 0;
-// 	pushed = 0;
-// 	current_a = *tail_a;
-// 	len = count_node(tail_a);
-// 	while (len > 6 && i < len && pushed * 2 < len)
-// 	{
-// 		if (current_a->index * 2 <= len)
-// 		{
-// 			pb(tail_a, tail_b);
-// 			pushed++;
-// 		}
-// 		else
-// 			ra(tail_a, 1);
-// 		i++;
-// 	}
-// 	while (len-- > 3)
-// 	{
-// 		pb(tail_a, tail_b);
-// 	}
-// }
-
-//Stanf
+//Stand 18.05
 void	p2b(t_node **tail_a, t_node **tail_b)
 {
 	int		len;
@@ -266,19 +251,44 @@ void	travel_costs(t_node **tail_a, t_node **tail_b)
 
 	current_position(tail_a);
 	current_position(tail_b);
+	// printf("*************************************************\n");
 	len_b = count_node(tail_b);
+	// printf("*************************************************\n");
+
+	// printf("------------------------------------------------------\n");
+
 	len_a = count_node(tail_a);
+	// printf("------------------------------------------------------\n");
 	i = 0;
 	current_a = *tail_a;
 	current_b = *tail_b;
 	while (i < len_b)
 	{
+
 		current_b->cost_b = current_b->pos;
 		if (current_b->pos > len_b / 2)
 			current_b->cost_b = (len_b - current_b->pos) * (-1);
 		current_b->cost_a = current_b->target_pos;
 		if (current_b->target_pos > len_a / 2)
 			current_b->cost_a = (len_a - current_b->target_pos) * (-1);
+		// ft_putstr_fd("len b = ", 2);
+		// ft_putstr_fd(ft_itoa(len_b), 2);
+		// ft_putstr_fd("\n", 2);
+		// ft_putstr_fd("cost b = ", 2);
+		// ft_putstr_fd(ft_itoa(current_b->cost_b), 2);
+		// ft_putstr_fd("\n", 2);
+
+	// printf("tail position is = %d ; tail  prev is = %d \n", (*tail_a)->pos, (*tail_a)->prev->pos);
+	// printf("tail value is = %d ; tail  prev value is = %d \n", (*tail_a)->x, (*tail_a)->prev->x);
+	//  printf("\033[1;32m");
+	//  printf("len a = %d\n", len_a);
+		// ft_putstr_fd("len a = ", 2);
+		// ft_putstr_fd(ft_itoa(len_a), 2);
+		// ft_putstr_fd("\n", 2);
+		//  printf("\033[0m");
+		// ft_putstr_fd("cost a = ", 2);
+		// ft_putstr_fd(ft_itoa(current_b->cost_a), 2);
+		// ft_putstr_fd("\n", 2);
 		current_b = current_b->next;
 		i++;
 	}
@@ -381,6 +391,10 @@ void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 		}
 		if (data->delta_index == INT_MAX)
 			cur_b->target_pos = find_lowest(&cur_a)->pos;
+		// printf("my target index = %d\n", 	cur_b->target_pos);
+		// ft_putstr_fd("my target position = ", 2);
+		// ft_putstr_fd(ft_itoa(cur_b->target_pos), 2);
+		// ft_putstr_fd("\n", 2);
 		data->i++;
 		cur_b = cur_b->next;
 	}

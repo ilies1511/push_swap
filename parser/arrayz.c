@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:01:26 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/06 17:04:36 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/18 19:55:40 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ int	*make_array(int *amount_numbers, char **argv)
 	}
 	// sorted_array = array_dub(array, *amount_numbers);
 	// sort_array(sorted_array, *amount_numbers);
-	print_array(array, *amount_numbers);
+	// print_array(array, *amount_numbers);
 	return (array);
 }

@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:14:22 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/17 01:28:32 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/19 01:29:07 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	sb(t_node **tail, int flag)
 	}
 	if (flag == 1)
 		write(1, "sb\n", 3);
+	current_position(tail);
 }
 
 // void	sb(t_node **tail, int flag)

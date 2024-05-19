@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 00:27:08 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/19 06:38:49 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,19 @@ void	shifter(t_node **tail_a)
 {
 	int		len;
 	int		i;
-	t_node	*lowest;
 
-	lowest = find_lowest(tail_a);
+	current_position(tail_a);
 	i = 0;
 	len = count_node(tail_a);
-	if (lowest->pos > len / 2)
+	if (find_highest(tail_a)->pos > len / 2)
 	{
 		while (!sort_checker(tail_a))
-			ra(tail_a, 1);
+			rra(tail_a, 1);
 	}
 	else
 	{
 		while (!sort_checker(tail_a))
-			rra(tail_a, 1);
+			ra(tail_a, 1);
 	}
 }
 
@@ -58,11 +57,35 @@ int	count_node(t_node **tail)
 		return (0);
 	len = 0;
 	current = *tail;
+
+		// printf("count node starts ************************************************************* \n");
 	while (current->next && current->next != *tail)
 	{
+		// printf("tail position is = %d ; tail  prev is = %d \n", (*tail)->pos, (*tail)->prev->pos);
+		// printf("tail value is = %d ; tail  prev value is = %d \n", (*tail)->x, (*tail)->prev->x);
+		// printf("my position is = %d ; my  next is = %d \n", current->pos, current->next->pos);
+		// printf("my value is = %d ; my  next value is = %d \n", current->x, current->next->x);
 		len++;
 		current = current->next;
+		// if(!(current->next))
+		// {
+		// 	printf("there is no next \n");
+		// }
+		// if (current == *tail)
+		// {
+		// 	printf("tail erreicht\n");
+		// 	printf("tail position is = %d ; tail  next is = %d \n", current->pos, current->next->pos);
+		// printf("tail value is = %d ; tail  next value is = %d \n", current->x, current->next->x);
+		// }
 	}
+	// while (current) //&& current->next)
+	// {
+	// 	len++;
+	// 	current = current->next;
+	// 	if (current == *tail)
+	// 		break;
+
+	// }
 	return (len + 1);
 }
 // int	count_node(t_node **tail)
@@ -151,6 +174,12 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	while (i < amount_numbers)
 		add_end(&tail_a, array[i++]);
 	init_index(&tail_a, sorted_array, amount_numbers);
+	if (sort_checker(&tail_a))
+	{
+		// printf("Im already sorted\n");
+		exit (1);
+	}
+
 	p2b(&tail_a, &tail_b);
 	current = tail_a;
 	tiny_sort(&tail_a);
@@ -158,10 +187,27 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	i = 0;
 	while (i < len_b)
 	{
-		current_position(&tail_a);
+
 		current_position(&tail_b);
+		current_position(&tail_a);
 		find_target_pos(&tail_a, &tail_b);
-		// printf("\nPrint array of stack b: \n");
+
+		// ft_putstr_fd("my target position = ", 2);
+		// ft_putstr_fd(ft_itoa(tail_b->target_pos), 2);
+		// ft_putstr_fd("\n", 2);
+
+		// ft_putstr_fd("len b au$er = ", 2);
+		// ft_putstr_fd(ft_itoa(count_node(&tail_b)), 2);
+		// ft_putstr_fd("\n", 2);
+
+		// ft_putstr_fd("value tail a = ", 2);
+		// ft_putstr_fd(ft_itoa((tail_a)->x), 2);
+		// ft_putstr_fd("\n", 2);
+
+		// ft_putstr_fd("len a au$er = ", 2);
+		// ft_putstr_fd(ft_itoa(count_node(&tail_a)), 2);
+		// ft_putstr_fd("\n", 2);
+		// // printf("\nPrint array of stack b: \n");
 		// current = tail_b;
 		// k = 0;
 		// while (k < len_b)
@@ -170,35 +216,30 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 		// 	current = current->next;
 		// 	k++;
 		// }
+		current_position(&tail_b);
+		current_position(&tail_a);
 		travel_costs(&tail_a, &tail_b);
+		current_position(&tail_b);
+		current_position(&tail_a);
 		find_cheapest(&tail_a, &tail_b);
+		current_position(&tail_b);
+		current_position(&tail_a);
 		// current_position(&tail_a);
 		// current_position(&tail_b);
 		// out_put_a(tail_a);
 		// out_put_a(tail_b);
 		i++;
 	}
-	// if (find_highest(&tail_a)->index == (tail_a)->index)
-	// 	ra(&tail_a, 1);
-	// rra(&tail_a, 1);
-	// rra(&tail_a, 1);
-	// rra(&tail_a, 1);
-	// rra(&tail_a, 1);
-			// current_position(&tail_a);
-	// while (1)
-	// {
-	// 	if (sort_checker(&tail_a) == 0)
-	// 		break ;
-	// 	rra(&tail_a, 1);
-	// }
-
-
 	if (!sort_checker(&tail_a))
 	{
 		shifter(&tail_a);
-		printf("Im Here\n");
+		// printf("Im Here\n");
 	}
-	out_put_a(tail_a);
+	// if (sort_checker(&tail_a))
+	// {
+	// 	printf("Im Sorted\n");
+	// }
+	// out_put_a(tail_a);
 	// if (!sort_checker(&tail_a))
 	// {
 	// 	printf("\nEvertythin is sorted...\n");

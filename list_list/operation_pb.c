@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:21:36 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 00:11:32 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/19 06:44:25 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	pb(t_node **tail_a, t_node **tail_b, int flag)
 	*tail_b = node2push;
 	if (flag == 1)
 		write(1, "pb\n", 3);
+	current_position(tail_a);
+	current_position(tail_b);
 }
 
 // void	pb(t_node **tail_a, t_node **tail_b)
