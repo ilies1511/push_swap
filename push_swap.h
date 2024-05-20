@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 00:11:49 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/20 20:39:56 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef struct s_node
 	int				cost_b;
 	int				x;
 	int				target_pos;
+	int				target_x;
 	int				pos;
 	int				index;
+	int				target_index;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
@@ -81,6 +83,7 @@ void	current_position(t_node **tail);
 void	find_target_pos(t_node **t_a, t_node **t_b);
 void	travel_costs(t_node **tail_a, t_node **tail_b);
 void	find_cheapest(t_node **tail_a, t_node **tail_b);
+int		target_value(t_node *a, int i);
 //Operation
 void	sa(t_node **tail, int flag);
 void	sb(t_node **tail, int flag);

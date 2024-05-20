@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 01:04:03 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/19 06:42:52 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/20 23:26:30 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,32 @@ void	current_position(t_node **tail)
 void	p2b(t_node **tail_a, t_node **tail_b)
 {
 	int		len;
+	int		median;
 	int		i;
-	t_node	*current_a;
+	int		pushed;
 
 	if (!(*tail_a))
 		return ;
+	len = count_node(tail_a);
+	median = len / 2;
 	i = 0;
-	current_a = *tail_a;
-	len = count_node(tail_a) - 3;
-	while (len > 6 && i < len)
+	pushed = 0;
+	while (i < len)
 	{
-		if (current_a->index < len / 2)
+		if ((*tail_a)->index <= median)
+		{
 			pb(tail_a, tail_b, 1);
-		else
+			pushed++;
+		}
+		else if (pushed < median)
 			ra(tail_a, 1);
 		i++;
 	}
-	i = 0;
-	while (i < len)
+	len = count_node(tail_a);
+	while (len > 3)
 	{
 		pb(tail_a, tail_b, 1);
-		i++;
+		len--;
 	}
 }
 // void	p2b(t_node **tail_a, t_node **tail_b)
@@ -123,31 +128,41 @@ void	p2b(t_node **tail_a, t_node **tail_b)
 // 	return (flag);
 // }
 
-void	rot_stack_b(t_node **tail, int cost)
+void	rot_stack_b(t_node **tail, int *cost)
 {
-	if (cost > 0)
+	if ((*cost) > 0)
 	{
-		while (cost--)
+		while ((*cost)--)
 			rb(tail, 1);
 	}
 	else
 	{
-		while (cost++)
+		while ((*cost)++)
 			rrb(tail, 1);
 	}
 }
 
-void	rot_stack_a(t_node **tail, int cost)
+void	rot_stack_a(t_node **tail, int *cost)
 {
-	if (cost > 0)
+	if ((*cost) > 0)
 	{
-		while (cost--)
+		while ((*cost)--)
 			ra(tail, 1);
 	}
 	else
 	{
-		while (cost++)
+		while ((*cost)++)
+		{
 			rra(tail, 1);
+		// 	ft_putstr_fd("Im here\n" ,2);
+		// 	ft_putstr_fd("len a  / 2 = " ,2);
+		// 	ft_putstr_fd(ft_itoa(count_node(tail) / 2) ,2);
+		// 	ft_putstr_fd("\n" ,2);
+		// 	ft_putstr_fd("index = " ,2);
+
+		// 	ft_putstr_fd(ft_itoa((*tail)->index) ,2);
+		// 	ft_putstr_fd("\n" ,2);
+		}
 	}
 }
 
@@ -189,6 +204,7 @@ void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest)
 	t_node	*current_a;
 	t_node	*current_b;
 
+	// printf("cost a = %d ; cost b = %d \n", cheapest->cost_a, cheapest->cost_b);
 	current_a = *tail_a;
 	current_b = *tail_b;
 	while (cheapest->cost_a > 0 && cheapest->cost_b > 0)
@@ -203,8 +219,10 @@ void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest)
 		cheapest->cost_a++;
 		cheapest->cost_b++;
 	}
-	rot_stack_a(tail_a, cheapest->cost_a);
-	rot_stack_b(tail_b, cheapest->cost_b);
+	// printf("cost a = %d ; cost b = %d \n", cheapest->cost_a, cheapest->cost_b);
+	// exit(1);
+	rot_stack_a(tail_a, &(cheapest->cost_a));
+	rot_stack_b(tail_b, &(cheapest->cost_b));
 	pa(tail_a, tail_b, 1);
 }
 
@@ -229,15 +247,20 @@ void	find_cheapest(t_node **tail_a, t_node **tail_b)
 	cheapest = INT_MAX;
 	while (i < len_b)
 	{
-		if (absoluter(current_b->cost_a)
-			+ absoluter(current_b->cost_b) < cheapest)
+			// printf("value a = %d; value b = %d; cost a = %d ; cost b = %d ; index a = %d ; index b = %d\n",current_b->target_x, current_b->x, current_b->cost_a, current_b->cost_b, current_b->target_index ,current_b->index);
+
+		if ((absoluter(current_b->cost_a)
+			+ absoluter(current_b->cost_b)) < cheapest)
 		{
 			cheapest = current_b->cost_a + current_b->cost_b;
 			cheapest_node = current_b;
+			// sleep(5);
 		}
 		current_b = current_b->next;
 		i++;
 	}
+			// printf("cheapst cost a = %d ; cheapst cost b = %d \n", current_b->cost_a, current_b->cost_b);
+			// exit(1);
 	do_cheapest_moves(tail_a, tail_b, cheapest_node);
 }
 
@@ -266,10 +289,10 @@ void	travel_costs(t_node **tail_a, t_node **tail_b)
 	{
 
 		current_b->cost_b = current_b->pos;
-		if (current_b->pos > len_b / 2)
+		if (current_b->pos >= len_b / 2)
 			current_b->cost_b = (len_b - current_b->pos) * (-1);
 		current_b->cost_a = current_b->target_pos;
-		if (current_b->target_pos > len_a / 2)
+		if (current_b->target_pos >= len_a / 2)
 			current_b->cost_a = (len_a - current_b->target_pos) * (-1);
 		// ft_putstr_fd("len b = ", 2);
 		// ft_putstr_fd(ft_itoa(len_b), 2);
@@ -383,14 +406,24 @@ void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 			if (cur_b->index < cur_a->index
 				&& cur_a->index < data->delta_index)
 			{
+				// printf("index = %d\n", cur_a->index);
+				// printf("pos = %d\n", cur_a->pos);
 				cur_b->target_pos = cur_a->pos;
+				cur_b->target_x = cur_a->x;
+				cur_b->target_index = cur_a->index;
 				data->delta_index = cur_a->index;
 			}
 			cur_a = cur_a->next;
 			data->k++;
 		}
+		// printf("while loop endet\n");
 		if (data->delta_index == INT_MAX)
-			cur_b->target_pos = find_lowest(&cur_a)->pos;
+		{
+			cur_b->target_pos = (find_lowest(&cur_a))->pos;
+			cur_b->target_index = (find_lowest(&cur_a))->index;
+
+				cur_b->target_x = cur_a->x;
+		}
 		// printf("my target index = %d\n", 	cur_b->target_pos);
 		// ft_putstr_fd("my target position = ", 2);
 		// ft_putstr_fd(ft_itoa(cur_b->target_pos), 2);

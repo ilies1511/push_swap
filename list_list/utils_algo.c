@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 18:06:43 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 00:00:26 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/20 19:15:19 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ t_node	*find_lowest(t_node **tail)
 	lowest = *tail;
 	while (i < len)
 	{
-		if (lowest->x > current->x)
+		if (current->x < lowest->x)
 			lowest = current;
 		current = current->next;
 		i++;

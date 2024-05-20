@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/19 06:38:49 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/20 20:16:55 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int target_value(t_node *a, int i)
 {
 	while(a->pos != i)
 		a = a->next;
-	return (a->x);
+	return (a->index);
 }
 void	out_put_a(t_node *a)
 {
@@ -179,7 +179,6 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 		// printf("Im already sorted\n");
 		exit (1);
 	}
-
 	p2b(&tail_a, &tail_b);
 	current = tail_a;
 	tiny_sort(&tail_a);
