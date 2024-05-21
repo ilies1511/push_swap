@@ -6,78 +6,207 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 01:04:03 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 02:07:39 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 13:37:01 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	current_position(t_node **tail)
+int	get_cost(t_node *cheapest_node)
 {
-	t_node	*current;
-	int		len;
-	int		i;
-
-	if (!(*tail))
-		return ;
-	i = 0;
-	len = count_node(tail);
-	// printf("len = %d\n", len);
-	current = *tail;
-	// while(current && current->next)
-	// {
-	// 	current->pos = i;
-	// 	i++;
-	// 	current = current->next;
-	// 	if (current == *tail)
-	// 		break;
-	// }
-	while (i < len)
+	if ((cheapest_node->cost_a >= 0 && cheapest_node->cost_b >= 0)
+		|| (cheapest_node->cost_a < 0 && cheapest_node->cost_b < 0))
 	{
-		//  printf("\033[1;33m");
-		// printf("tail position is = %d ; tail  prev is = %d \n", (*tail)->pos, (*tail)->prev->pos);
-		// printf("tail value is = %d ; tail  prev value is = %d \n", (*tail)->x, (*tail)->prev->x);
-		//  printf("\033[0m");
-		current->pos = i;
-		// 	printf("i = %d\n", i);
-		// printf("current value = %d ; current position = %d \n", current->x, current->pos);
-		current = current->next;
-		i++;
+		if (absoluter(cheapest_node->cost_a) > absoluter(cheapest_node->cost_b))
+			return (absoluter(cheapest_node->cost_a));
+		else
+			return (absoluter(cheapest_node->cost_b));
 	}
+	else
+		return (absoluter(cheapest_node->cost_a)
+			+ absoluter(cheapest_node->cost_b));
 }
 
-//Stand 18.05
-void	p2b(t_node **tail_a, t_node **tail_b)
+void	find_cheapest(t_node **tail_a, t_node **tail_b)
 {
-	int		len;
-	int		median;
+	t_node	*current_b;
+	int		cheapest;
+	int		len_b;
 	int		i;
-	int		pushed;
+	t_node	*cheapest_node;
 
-	if (!(*tail_a))
-		return ;
-	len = count_node(tail_a);
-	median = len / 2;
 	i = 0;
-	pushed = 0;
-	while (i < len && len > 6)
+	len_b = count_node(tail_b);
+	current_b = *tail_b;
+	cheapest = INT_MAX;
+	cheapest_node = current_b;
+	while (i < len_b)
 	{
-		if ((*tail_a)->index <= median)
+		if (get_cost(current_b) < cheapest)
 		{
-			pb(tail_a, tail_b, 1);
-			pushed++;
+			cheapest = get_cost(current_b);
+			cheapest_node = current_b;
 		}
-		else if (pushed < median)
-			ra(tail_a, 1);
+		current_b = current_b->next;
 		i++;
 	}
-	len = count_node(tail_a);
-	while (len > 3)
+	do_cheapest_moves(tail_a, tail_b, cheapest_node);
+}
+
+void	travel_costs(t_node **tail_a, t_node **tail_b)
+{
+	int		len_b;
+	int		len_a;
+	int		i;
+	t_node	*current_b;
+
+	len_b = count_node(tail_b);
+	len_a = count_node(tail_a);
+	i = 0;
+	current_b = *tail_b;
+	while (i < len_b)
 	{
-		pb(tail_a, tail_b, 1);
-		len--;
+		current_b->cost_b = current_b->pos;
+		if (current_b->pos > len_b / 2)
+			current_b->cost_b = (len_b - current_b->pos) * (-1);
+		current_b->cost_a = current_b->target_pos;
+		if (current_b->target_pos >= len_a / 2)
+			current_b->cost_a = (len_a - current_b->target_pos) * (-1);
+		current_b = current_b->next;
+		i++;
 	}
 }
+// Call find_cheapest(tail_a, tail_b) nach travel_cost
+
+void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
+{
+	while (data->i < data->len_b)
+	{
+		data->k = 0;
+		data->delta_index = INT_MAX;
+		cur_a = *t_a;
+		while (data->k < data->len_a)
+		{
+			if (cur_b->index < cur_a->index
+				&& cur_a->index < data->delta_index)
+			{
+				cur_b->target_pos = cur_a->pos;
+				data->delta_index = cur_a->index;
+			}
+			cur_a = cur_a->next;
+			data->k++;
+		}
+		if (data->delta_index == INT_MAX)
+			cur_b->target_pos = (find_lowest(&cur_a))->pos;
+		data->i++;
+		cur_b = cur_b->next;
+	}
+}
+
+void	find_target_pos(t_node **t_a, t_node **t_b)
+{
+	t_target	*data;
+	t_node		*current_b;
+	t_node		*current_a;
+
+	if (!(*t_a) || !(*t_b))
+		return ;
+	data = (t_target *)malloc(sizeof(t_target));
+	if (!data)
+		exit (1);
+	data->len_a = count_node(t_a);
+	data->len_b = count_node(t_b);
+	data->i = 0;
+	current_b = *t_b;
+	current_a = *t_a;
+	helper_ftp(current_a, current_b, data, t_a);
+}
+// void	current_position(t_node **tail)
+// {
+// 	t_node	*current;
+// 	int		len;
+// 	int		i;
+
+// 	if (!(*tail))
+// 		return ;
+// 	i = 0;
+// 	len = count_node(tail);
+// 	current = *tail;
+// 	// while(current && current->next)
+// 	// {
+// 	// 	current->pos = i;
+// 	// 	i++;
+// 	// 	current = current->next;
+// 	// 	if (current == *tail)
+// 	// 		break;
+// 	// }
+// 	while (i < len)
+// 	{
+// 		//  printf("\033[1;33m");
+// 		// printf("tail position is = %d ; tail  prev is
+			//= %d \n", (*tail)->pos, (*tail)->prev->pos);
+// 		// printf("tail value is = %d ; tail  prev value is = %d \n"
+			//, (*tail)->x, (*tail)->prev->x);
+// 		//  printf("\033[0m");
+// 		current->pos = i;
+// 		// 	printf("i = %d\n", i);
+// 		// printf("current value = %d ; current position = %d \n"
+		//, current->x, current->pos);
+// 		current = current->next;
+// 		i++;
+// 	}
+// }
+
+//TODO: Working
+// void	current_position(t_node **tail)
+// {
+// 	t_node	*current;
+// 	int		len;
+// 	int		i;
+
+// 	if (!(*tail))
+// 		return ;
+// 	i = 0;
+// 	len = count_node(tail);
+// 	current = *tail;
+// 	while (i < len)
+// 	{
+// 		current->pos = i;
+// 		current = current->next;
+// 		i++;
+// 	}
+// }
+
+//TODO: Working
+// void	p2b(t_node **tail_a, t_node **tail_b)
+// {
+// 	int		len;
+// 	int		median;
+// 	int		i;
+// 	int		pushed;
+
+// 	if (!(*tail_a))
+// 		return ;
+// 	len = count_node(tail_a);
+// 	median = len / 2;
+// 	i = 0;
+// 	pushed = 0;
+// 	while (i < len && len > 6)
+// 	{
+// 		if ((*tail_a)->index <= median)
+// 		{
+// 			pb(tail_a, tail_b, 1);
+// 			pushed++;
+// 		}
+// 		else if (pushed < median)
+// 			ra(tail_a, 1);
+// 		i++;
+// 	}
+// 	len = count_node(tail_a);
+// 	while (len-- > 3)
+// 		pb(tail_a, tail_b, 1);
+// }
+
 // void	p2b(t_node **tail_a, t_node **tail_b)
 // {
 // 	int	len;
@@ -128,43 +257,60 @@ void	p2b(t_node **tail_a, t_node **tail_b)
 // 	return (flag);
 // }
 
-void	rot_stack_b(t_node **tail, int *cost)
-{
-	if ((*cost) > 0)
-	{
-		while ((*cost)--)
-			rb(tail, 1);
-	}
-	else
-	{
-		while ((*cost)++)
-			rrb(tail, 1);
-	}
-}
+// //TODO:Bevore ich meinen Code saubergeamcht habe
+// void	rot_stack_b(t_node **tail, int *cost)
+// {
+// 	if ((*cost) > 0)
+// 	{
+// 		while ((*cost)--)
+// 			rb(tail, 1);
+// 	}
+// 	else
+// 	{
+// 		while ((*cost)++)
+// 			rrb(tail, 1);
+// 	}
+// }
 
-void	rot_stack_a(t_node **tail, int *cost)
-{
-	if ((*cost) > 0)
-	{
-		while ((*cost)--)
-			ra(tail, 1);
-	}
-	else
-	{
-		while ((*cost)++)
-		{
-			rra(tail, 1);
-		// 	ft_putstr_fd("Im here\n" ,2);
-		// 	ft_putstr_fd("len a  / 2 = " ,2);
-		// 	ft_putstr_fd(ft_itoa(count_node(tail) / 2) ,2);
-		// 	ft_putstr_fd("\n" ,2);
-		// 	ft_putstr_fd("index = " ,2);
+// Richtige Funktionsweise + HowTo debug
+// void	rot_stack_a(t_node **tail, int *cost)
+// {
+// 	if ((*cost) > 0)
+// 	{
+// 		while ((*cost)--)
+// 			ra(tail, 1);
+// 	}
+// 	else
+// 	{
+// 		while ((*cost)++)
+// 		{
+// 			rra(tail, 1);
+// 		// 	ft_putstr_fd("Im here\n" ,2);
+// 		// 	ft_putstr_fd("len a  / 2 = " ,2);
+// 		// 	ft_putstr_fd(ft_itoa(count_node(tail) / 2) ,2);
+// 		// 	ft_putstr_fd("\n" ,2);
+// 		// 	ft_putstr_fd("index = " ,2);
 
-		// 	ft_putstr_fd(ft_itoa((*tail)->index) ,2);
-		// 	ft_putstr_fd("\n" ,2);
-		}
-	}
-}
+// 		// 	ft_putstr_fd(ft_itoa((*tail)->index) ,2);
+// 		// 	ft_putstr_fd("\n" ,2);
+// 		}
+// 	}
+// }
+
+// //TODO:Bevore ich meinen Code saubergeamcht habe
+// void	rot_stack_a(t_node **tail, int *cost)
+// {
+// 	if ((*cost) > 0)
+// 	{
+// 		while ((*cost)--)
+// 			ra(tail, 1);
+// 	}
+// 	else
+// 	{
+// 		while ((*cost)++)
+// 			rra(tail, 1);
+// 	}
+// }
 
 // void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest)
 // {
@@ -199,39 +345,39 @@ void	rot_stack_a(t_node **tail, int *cost)
 // 	// 		rrb(tail_b, 1);
 // 	pa(tail_a, tail_b);
 // }
-void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest)
-{
-	t_node	*current_a;
-	t_node	*current_b;
 
-	// printf("cost a = %d ; cost b = %d \n", cheapest->cost_a, cheapest->cost_b);
-	current_a = *tail_a;
-	current_b = *tail_b;
-	while (cheapest->cost_a > 0 && cheapest->cost_b > 0)
-	{
-		rr(tail_a, tail_b);
-		cheapest->cost_b--;
-		cheapest->cost_a--;
-	}
-	while (cheapest->cost_a < 0 && cheapest->cost_b < 0)
-	{
-		rrr(tail_a, tail_b);
-		cheapest->cost_a++;
-		cheapest->cost_b++;
-	}
-	// printf("cost a = %d ; cost b = %d \n", cheapest->cost_a, cheapest->cost_b);
-	// exit(1);
-	rot_stack_a(tail_a, &(cheapest->cost_a));
-	rot_stack_b(tail_b, &(cheapest->cost_b));
-	pa(tail_a, tail_b, 1);
-}
+// //TODO: Befor ich Funktion aufgesplittet habe
+// void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest)
+// {
+// 	t_node	*current_a;
+// 	t_node	*current_b;
 
-int	absoluter(int number)
-{
-	if (number < 0)
-		number = number * (-1);
-	return (number);
-}
+// 	current_a = *tail_a;
+// 	current_b = *tail_b;
+// 	while (cheapest->cost_a > 0 && cheapest->cost_b > 0)
+// 	{
+// 		rr(tail_a, tail_b);
+// 		cheapest->cost_b--;
+// 		cheapest->cost_a--;
+// 	}
+// 	while (cheapest->cost_a < 0 && cheapest->cost_b < 0)
+// 	{
+// 		rrr(tail_a, tail_b);
+// 		cheapest->cost_a++;
+// 		cheapest->cost_b++;
+// 	}
+// 	rot_stack_a(tail_a, &(cheapest->cost_a));
+// 	rot_stack_b(tail_b, &(cheapest->cost_b));
+// 	pa(tail_a, tail_b, 1);
+// }
+
+// // //TODO: Befor ich Funktion aufgesplittet habe
+// int	absoluter(int number)
+// {
+// 	if (number < 0)
+// 		number = number * (-1);
+// 	return (number);
+// }
 
 // void	find_cheapest(t_node **tail_a, t_node **tail_b)
 // {
@@ -248,124 +394,67 @@ int	absoluter(int number)
 // 	cheapest_node = current_b;
 // 	while (i < len_b)
 // 	{
-// 			// printf("value a = %d; value b = %d; cost a = %d ; cost b = %d ; index a = %d ; index b = %d\n",current_b->target_x, current_b->x, current_b->cost_a, current_b->cost_b, current_b->target_index ,current_b->index);
 
 // 		if ((absoluter(current_b->cost_a)
 // 			+ absoluter(current_b->cost_b)) < cheapest)
 // 		{
-// 			cheapest = absoluter(current_b->cost_a) + absoluter(current_b->cost_b);
+// cheapest = absoluter(current_b->cost_a) + absoluter(current_b->cost_b);
 // 			cheapest_node = current_b;
 // 			// sleep(5);
 // 		}
 // 		current_b = current_b->next;
 // 		i++;
 // 	}
-// 			// printf("cheapst cost a = %d ; cheapst cost b = %d \n", current_b->cost_a, current_b->cost_b);
 // 			// exit(1);
 // 	do_cheapest_moves(tail_a, tail_b, cheapest_node);
 // }
 
-int get_cost(t_node *cheapest_node)
-{
-	if ((cheapest_node->cost_a >= 0 && cheapest_node->cost_b >= 0)
-		|| (cheapest_node->cost_a < 0 && cheapest_node->cost_b < 0))
-	{
-		if (absoluter(cheapest_node->cost_a) > absoluter(cheapest_node->cost_b))
-			return (absoluter(cheapest_node->cost_a));
-		else
-			return (absoluter(cheapest_node->cost_b));
-	}
-	else
-	{
-		return(absoluter(cheapest_node->cost_a) + absoluter(cheapest_node->cost_b));
-	}
-}
+//TODO: Funktion funktiniert, Debug Maßnahmen noch drin
+// void	travel_costs(t_node **tail_a, t_node **tail_b)
+// {
+// 	int		len_b;
+// 	int		len_a;
+// 	int		i;
+// 	t_node	*current_b;
+// 	t_node	*current_a;
 
-void	find_cheapest(t_node **tail_a, t_node **tail_b)
-{
-	t_node	*current_b;
-	int		cheapest;
-	int		len_b;
-	int		i;
-	t_node	*cheapest_node;
+// 	current_position(tail_a);
+// 	current_position(tail_b);
+// 	len_b = count_node(tail_b);
+// 	len_a = count_node(tail_a);
+// 	i = 0;
+// 	current_a = *tail_a;
+// 	current_b = *tail_b;
+// 	while (i < len_b)
+// 	{
 
-	i = 0;
-	len_b = count_node(tail_b);
-	current_b = *tail_b;
-	cheapest = INT_MAX;
-	cheapest_node = current_b;
-	while (i < len_b)
-	{
-			// printf("value a = %d; value b = %d; cost a = %d ; cost b = %d ; index a = %d ; index b = %d\n",current_b->target_x, current_b->x, current_b->cost_a, current_b->cost_b, current_b->target_index ,current_b->index);
+// 		current_b->cost_b = current_b->pos;
+// 		if (current_b->pos > len_b / 2)
+// 			current_b->cost_b = (len_b - current_b->pos) * (-1);
+// 		current_b->cost_a = current_b->target_pos;
+// 		if (current_b->target_pos >= len_a / 2)
+// 			current_b->cost_a = (len_a - current_b->target_pos) * (-1);
+// 		// ft_putstr_fd("len b = ", 2);
+// 		// ft_putstr_fd(ft_itoa(len_b), 2);
+// 		// ft_putstr_fd("\n", 2);
+// 		// ft_putstr_fd("cost b = ", 2);
+// 		// ft_putstr_fd(ft_itoa(current_b->cost_b), 2);
+// 		// ft_putstr_fd("\n", 2);
 
-		if (get_cost(current_b) < cheapest)
-		{
-			cheapest = get_cost(current_b);
-			cheapest_node = current_b;
-			// sleep(5);
-		}
-		current_b = current_b->next;
-		i++;
-	}
-			// printf("cheapst cost a = %d ; cheapst cost b = %d \n", current_b->cost_a, current_b->cost_b);
-			// exit(1);
-	do_cheapest_moves(tail_a, tail_b, cheapest_node);
-}
+// 	//  printf("\033[1;32m");
+// 	//  printf("len a = %d\n", len_a);
+// 		// ft_putstr_fd("len a = ", 2);
+// 		// ft_putstr_fd(ft_itoa(len_a), 2);
+// 		// ft_putstr_fd("\n", 2);
+// 		//  printf("\033[0m");
+// 		// ft_putstr_fd("cost a = ", 2);
+// 		// ft_putstr_fd(ft_itoa(current_b->cost_a), 2);
+// 		// ft_putstr_fd("\n", 2);
+// 		current_b = current_b->next;
+// 		i++;
+// 	}
+// 	// find_cheapest(tail_a, tail_b);
 
-void	travel_costs(t_node **tail_a, t_node **tail_b)
-{
-	int		len_b;
-	int		len_a;
-	int		i;
-	t_node	*current_b;
-	t_node	*current_a;
-
-	current_position(tail_a);
-	current_position(tail_b);
-	// printf("*************************************************\n");
-	len_b = count_node(tail_b);
-	// printf("*************************************************\n");
-
-	// printf("------------------------------------------------------\n");
-
-	len_a = count_node(tail_a);
-	// printf("------------------------------------------------------\n");
-	i = 0;
-	current_a = *tail_a;
-	current_b = *tail_b;
-	while (i < len_b)
-	{
-
-		current_b->cost_b = current_b->pos;
-		// printf("current pos = %d\n", current_b->pos);
-		if (current_b->pos > len_b / 2)
-			current_b->cost_b = (len_b - current_b->pos) * (-1);
-		current_b->cost_a = current_b->target_pos;
-		if (current_b->target_pos >= len_a / 2)
-			current_b->cost_a = (len_a - current_b->target_pos) * (-1);
-		// ft_putstr_fd("len b = ", 2);
-		// ft_putstr_fd(ft_itoa(len_b), 2);
-		// ft_putstr_fd("\n", 2);
-		// ft_putstr_fd("cost b = ", 2);
-		// ft_putstr_fd(ft_itoa(current_b->cost_b), 2);
-		// ft_putstr_fd("\n", 2);
-
-	// printf("tail position is = %d ; tail  prev is = %d \n", (*tail_a)->pos, (*tail_a)->prev->pos);
-	// printf("tail value is = %d ; tail  prev value is = %d \n", (*tail_a)->x, (*tail_a)->prev->x);
-	//  printf("\033[1;32m");
-	//  printf("len a = %d\n", len_a);
-		// ft_putstr_fd("len a = ", 2);
-		// ft_putstr_fd(ft_itoa(len_a), 2);
-		// ft_putstr_fd("\n", 2);
-		//  printf("\033[0m");
-		// ft_putstr_fd("cost a = ", 2);
-		// ft_putstr_fd(ft_itoa(current_b->cost_a), 2);
-		// ft_putstr_fd("\n", 2);
-		current_b = current_b->next;
-		i++;
-	}
-	// find_cheapest(tail_a, tail_b);
-}
 // void	travel_costs(t_node **tail_a, t_node **tail_b)
 // {
 // 	// int		cheapest;
@@ -403,8 +492,7 @@ void	travel_costs(t_node **tail_a, t_node **tail_b)
 // 	}
 // }
 
-
-//Very Good version of that
+//TODO: Working and Very Good version of that
 // void helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 // {
 // 	t_a += 0;
@@ -441,46 +529,45 @@ void	travel_costs(t_node **tail_a, t_node **tail_b)
 
 // }
 
+//TODO: Workink function
+// void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
+// {
+// 	while (data->i < data->len_b)
+// 	{
+// 		data->k = 0;
+// 		data->delta_index = INT_MAX;
+// 		cur_a = *t_a;
+// 		while (data->k < data->len_a)
+// 		{
+// 			if (cur_b->index < cur_a->index
+// 				&& cur_a->index < data->delta_index)
+// 			{
+// 				// printf("index = %d\n", cur_a->index);
+// 				// printf("pos = %d\n", cur_a->pos);
+// 				cur_b->target_pos = cur_a->pos;
+// 				cur_b->target_x = cur_a->x;
+// 				cur_b->target_index = cur_a->index;
+// 				data->delta_index = cur_a->index;
+// 			}
+// 			cur_a = cur_a->next;
+// 			data->k++;
+// 		}
+// 		// printf("while loop endet\n");
+// 		if (data->delta_index == INT_MAX)
+// 		{
+// 			cur_b->target_pos = (find_lowest(&cur_a))->pos;
+// 			cur_b->target_index = (find_lowest(&cur_a))->index;
 
-//Mo
-void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
-{
-	while (data->i < data->len_b)
-	{
-		data->k = 0;
-		data->delta_index = INT_MAX;
-		cur_a = *t_a;
-		while (data->k < data->len_a)
-		{
-			if (cur_b->index < cur_a->index
-				&& cur_a->index < data->delta_index)
-			{
-				// printf("index = %d\n", cur_a->index);
-				// printf("pos = %d\n", cur_a->pos);
-				cur_b->target_pos = cur_a->pos;
-				cur_b->target_x = cur_a->x;
-				cur_b->target_index = cur_a->index;
-				data->delta_index = cur_a->index;
-			}
-			cur_a = cur_a->next;
-			data->k++;
-		}
-		// printf("while loop endet\n");
-		if (data->delta_index == INT_MAX)
-		{
-			cur_b->target_pos = (find_lowest(&cur_a))->pos;
-			cur_b->target_index = (find_lowest(&cur_a))->index;
-
-				cur_b->target_x = cur_a->x;
-		}
-		// printf("my target index = %d\n", 	cur_b->target_pos);
-		// ft_putstr_fd("my target position = ", 2);
-		// ft_putstr_fd(ft_itoa(cur_b->target_pos), 2);
-		// ft_putstr_fd("\n", 2);
-		data->i++;
-		cur_b = cur_b->next;
-	}
-}
+// 				cur_b->target_x = cur_a->x;
+// 		}
+// 		// printf("my target index = %d\n", 	cur_b->target_pos);
+// 		// ft_putstr_fd("my target position = ", 2);
+// 		// ft_putstr_fd(ft_itoa(cur_b->target_pos), 2);
+// 		// ft_putstr_fd("\n", 2);
+// 		data->i++;
+// 		cur_b = cur_b->next;
+// 	}
+// }
 
 //Stand 17.05.2024 21:05
 // void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
@@ -492,7 +579,7 @@ void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 // 		cur_a = *t_a;
 // 		while (data->k < data->len_a)
 // 		{
-// 			// if (find_highest(&cur_b)->index > find_highest(t_a)->index) //|| cur_b->index < find_lowest(t_a)->index)
+//// if (find_highest(&cur_b)->index > find_highest(t_a)->index) //|| cur_b->index < find_lowest(t_a)->index)
 // 			// {
 // 			// 	cur_b->target_pos = find_lowest(t_a)->pos;
 // 			// 	break ;
@@ -501,7 +588,7 @@ void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 // 				&& cur_a->index - cur_b->index < data->delta_index)
 // 			{
 // 				cur_b->target_pos = cur_a->pos;
-// 				data->delta_index = cur_a->index; //data->delta_index = cur_a->index - cur_b->index;
+//data->delta_index = cur_a->index; //data->delta_index = cur_a->index - cur_b->index;
 // 			}
 // 			cur_a = cur_a->next;
 // 			data->k++;
@@ -524,7 +611,6 @@ void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 // 		cur_b = cur_b->next;
 // 	}
 // }
-
 
 // void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 // {
@@ -554,25 +640,6 @@ void	helper_ftp(t_node *cur_a, t_node *cur_b, t_target *data, t_node **t_a)
 // 		cur_b = cur_b->next;
 // 	}
 // }
-
-void	find_target_pos(t_node **t_a, t_node **t_b)
-{
-	t_target	*data;
-	t_node		*current_b;
-	t_node		*current_a;
-
-	if (!(*t_a) || !(*t_b))
-		return ;
-	data = (t_target *)malloc(sizeof(t_target));
-	if (!data)
-		exit (1);
-	data->len_a = count_node(t_a);
-	data->len_b = count_node(t_b);
-	data->i = 0;
-	current_b = *t_b;
-	current_a = *t_a;
-	helper_ftp(current_a, current_b, data, t_a);
-}
 
 //working function but no norm
 // void	find_target_pos(t_node **t_a, t_node **t_b)
@@ -617,7 +684,6 @@ void	find_target_pos(t_node **t_a, t_node **t_b)
 // 		i++;
 // 	}
 // }
-
 
 // void	find_target_pos(t_node **t_a, t_node **h_a, t_node **t_b, t_node **h_b)
 // {

@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 20:57:31 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 21:26:36 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 15:21:38 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	int_range_check(char **argv, int amount_numbers)
 		}
 		if (substring_words > 1)
 			substring_case_function(substring_words, argv, &k);
-		else if (ft_atoi(argv[k]) <= INT_MIN || ft_atoi(argv[k]) >= INT_MAX)
+		else if (ft_atoi(argv[k]) < INT_MIN || ft_atoi(argv[k]) > INT_MAX)
 		{
 			write(2, "Error\n", 6);
 			exit (1);

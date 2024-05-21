@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/20 20:39:56 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 11:14:35 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "./libft/libft.h"
+
+// typedef struct s_swap
+// {
+// 	int		len;
+// 	t_node	*first;
+// 	t_node	*second;
+// 	t_node	*third;
+// 	t_node	*last;
+// }			t_swap;
 
 typedef struct s_find_target_pos
 {
@@ -48,6 +57,15 @@ typedef struct s_node
 	struct s_node	*prev;
 }					t_node;
 
+typedef struct s_swap
+{
+	int		len;
+	t_node	*first;
+	t_node	*second;
+	t_node	*third;
+	t_node	*last;
+}			t_swap;
+
 // Utils Parcing Input (Array)
 int		number_counter(char **argv);
 void	parcer(char **argv, int amount_numbers);
@@ -68,7 +86,7 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array);
 void	print_left2right(t_node **tail, t_node **head);
 void	add_begin(t_node **tail, int value);
 t_node	*init_list(t_node **tail, t_node **head, int value);
-void	deallocate_list(t_node **tail, t_node **head);
+void	deallocate_list(t_node **tail);
 void	rm_node(t_node *node, t_node **tail);
 void	add_end(t_node **tail, int value);
 int		count_node(t_node **tail);
@@ -84,6 +102,12 @@ void	find_target_pos(t_node **t_a, t_node **t_b);
 void	travel_costs(t_node **tail_a, t_node **tail_b);
 void	find_cheapest(t_node **tail_a, t_node **tail_b);
 int		target_value(t_node *a, int i);
+void	shifter(t_node **tail_a);
+void	out_put_a(t_node *a);
+void	rot_stack_a(t_node **tail, int *cost);
+void	rot_stack_b(t_node **tail, int *cost);
+void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest);
+int		absoluter(int number);
 //Operation
 void	sa(t_node **tail, int flag);
 void	sb(t_node **tail, int flag);
@@ -96,7 +120,6 @@ void	rr(t_node **tail_a, t_node **tail_b);
 void	rra(t_node **tail, int flag);
 void	rrb(t_node **tail, int flag);
 void	rrr(t_node **tail_a, t_node **tail_b);
-
-void	out_put_a(t_node *a);
+//Utils Debug
 
 #endif

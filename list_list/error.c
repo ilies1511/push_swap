@@ -3,31 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilies1511 <ilies1511@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:47:46 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/12 01:22:59 by ilies1511        ###   ########.fr       */
+/*   Updated: 2024/05/21 14:56:38 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	deallocate_list(t_node **tail, t_node **head)
+void	deallocate_list(t_node **tail)
 {
 	t_node	*current;
+	int		i;
+	int		len;
 
-	if (*tail == NULL || *head == NULL)
+	if (!(*tail))
 		return ;
+	if (*tail == NULL)
+		return ;
+	len = count_node(tail);
+	i = 0;
 	current = *tail;
-	while (current != *head)
+	while (i < len - 1)
 	{
 		current = current->next;
 		free (current->prev);
 		current->prev = NULL;
+		i++;
 	}
 	free(current);
 	*tail = NULL;
-	*head = NULL;
 }
 
 void	rm_node(t_node *node, t_node **tail)
@@ -77,4 +83,22 @@ void	rm_node(t_node *node, t_node **tail)
 // 	// }
 // 	free(node);
 // 	node = NULL;
+// }
+
+// void	deallocate_list(t_node **tail, t_node **head)
+// {
+// 	t_node	*current;
+
+// 	if (*tail == NULL || *head == NULL)
+// 		return ;
+// 	current = *tail;
+// 	while (current != *head)
+// 	{
+// 		current = current->next;
+// 		free (current->prev);
+// 		current->prev = NULL;
+// 	}
+// 	free(current);
+// 	*tail = NULL;
+// 	*head = NULL;
 // }

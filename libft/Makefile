@@ -4,7 +4,7 @@ NAME = libft.a
 
 HEADER = libft.h
 
-CFLAGS = cc -Wall -Wextra -Werror
+CFLAGS = cc -Wall -Wextra -Werror -g
 
 .DEFAULT_GOAL := all # default rule to be executed
 
@@ -63,10 +63,10 @@ $(NAME): $(OBJS) $(BONUS_OBJS)
 	ar rcs $@ $(OBJS) $(BONUS_OBJS)
 
 $(OBJS): %.o: %.c $(HEADER)
-	$(CFLAGS) -I $(HEADER) -c $< -o $@
+	$(CFLAGS) -I. -c $< -o $@
 
 $(BONUS_OBJS): %.o: %.c $(HEADER)
-	$(CFLAGS) -I $(HEADER) -c $< -o $@
+	$(CFLAGS) -I. -c $< -o $@
 
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)

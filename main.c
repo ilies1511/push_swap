@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:45:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 21:26:26 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 15:10:26 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,19 @@ int	main(int argc, char **argv)
 	sorted_array = array_dub(array, amount_words);
 	sort_array(sorted_array, amount_words);
 	list_manager(array, amount_words, sorted_array);
+	free(array);
+	free(sorted_array);
+	array = NULL;
+	sorted_array = NULL;
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	char	*test;
+
+// 	test = malloc(1);
+// 	(void)test;
+// 	test = NULL;
+// 	// free(test);
+// }

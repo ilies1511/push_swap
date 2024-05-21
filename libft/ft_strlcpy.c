@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:01:14 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/07 20:51:55 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 13:31:31 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {
 	size_t	i;
-	// size_t	counter;
 	size_t	src_len;
 
 	src_len = 0;
 	while (src[src_len] != '\0')
 		src_len++;
-	// counter = 0;
 	if (dstsize == 0)
 		return (src_len);
 	i = 0;

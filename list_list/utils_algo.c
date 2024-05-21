@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 18:06:43 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/20 19:15:19 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 13:24:06 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,25 +102,6 @@ t_node	*find_highest(t_node **tail)
 	}
 	return (highest);
 }
-// t_node	*find_highest(t_node **tail, int amount_numbers)
-// {
-// 	t_node	*highest;
-// 	t_node	*current;
-// 	int		i;
-
-// 	i = 0;
-// 	current = *tail;
-// 	highest = *tail;
-// 	while (i < amount_numbers)
-// 	{
-// 		if (highest->x < current->x)
-// 			highest = current;
-// 		current = current->next;
-// 		i++;
-// 	}
-// 	// printf("Check highest node\nvalue: %d index: %d\n", highest->x, highest->index);
-// 	return (highest);
-// }
 
 t_node	*find_lowest(t_node **tail)
 {
@@ -160,6 +141,26 @@ t_node	*find_lowest(t_node **tail)
 // 		current = current->next;
 // 		i++;
 // 	}
-// 	// printf("Check lowest node\nvalue: %d index: %d\n", lowest->x, lowest->index);
+// 	// printf("Check lowest node\nvalue:
+	// %d index: %d\n", lowest->x, lowest->index);
 // 	return (lowest);
+// }
+
+// t_node	*find_highest(t_node **tail, int amount_numbers)
+// {
+// 	t_node	*highest;
+// 	t_node	*current;
+// 	int		i;
+
+// 	i = 0;
+// 	current = *tail;
+// 	highest = *tail;
+// 	while (i < amount_numbers)
+// 	{
+// 		if (highest->x < current->x)
+// 			highest = current;
+// 		current = current->next;
+// 		i++;
+// 	}
+// 	return (highest);
 // }

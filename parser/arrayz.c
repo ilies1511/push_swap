@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:01:26 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 19:55:40 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 14:53:03 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	*array_dub(int *array, int amount_numbers)
 	i = 0;
 	array_cpy = malloc(sizeof(int) * amount_numbers);
 	if (!array_cpy)
+	{
+		free(array);
 		exit (1);
+	}
 	while (i < amount_numbers && array)
 	{
 		array_cpy[i] = array[i];
@@ -72,6 +75,7 @@ int	*array_filler(int *amount_numbers, char **argv, int *array)
 			array[i++] = ft_atoi(argv[k]);
 		k++;
 	}
+	ft_free_2d(substring_case);
 	return (array);
 }
 
@@ -87,14 +91,14 @@ int	*make_array(int *amount_numbers, char **argv)
 	if (check_duplicates(array, *amount_numbers) == 1)
 	{
 		write(2, "Error\n", 6);
-		free (array);
-		exit (1);
+		free(array);
+		exit(1);
 	}
 	sorted_array = malloc(sizeof(int) * (*amount_numbers));
 	if (!sorted_array)
 	{
 		free(array);
-		exit (1);
+		exit(1);
 	}
 	// sorted_array = array_dub(array, *amount_numbers);
 	// sort_array(sorted_array, *amount_numbers);
