@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 04:41:57 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 14:59:16 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 15:44:26 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_node	*init_list(t_node **tail, t_node **head, int value)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 	{
-		// deallocate_list(tail, head);
+		deallocate_list(tail);
 		exit (1);
 	}
 	new_node->x = value;
@@ -54,7 +54,6 @@ void	add_end(t_node **tail, int value)
 		new_node->prev = (*tail)->prev;
 		(*tail)->prev->next = new_node;
 		(*tail)->prev = new_node;
-		// *head = new_node;
 	}
 }
 
@@ -65,7 +64,7 @@ void	add_begin(t_node **tail, int value)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 	{
-		// deallocate_list(tail);
+		deallocate_list(tail);
 		exit (1);
 	}
 	new_node->x = value;

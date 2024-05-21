@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:07:06 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 13:22:53 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 15:43:10 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,7 @@ void	out_put_a(t_node *a)
 {
 	int	i;
 	int	len;
-	// while (i < 7)
-	// {
-	// 	printf("%i ", a->x);
-	// 	a = a->next;
-	// 	i++;
-	// }
-	// printf("\n");
-	// while (a->pos != 0)
-	// 	a = a->next;
+
 	i = 0;
 	len = count_node(&a);
 	while (i < len)

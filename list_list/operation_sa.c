@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 00:57:53 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 13:30:39 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 21:49:41 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	sa(t_node **tail, int flag)
 		helper_swap(tail, data);
 	if (flag == 1)
 		write(1, "sa\n", 3);
+	free(data);
 	current_position(tail);
 }
 

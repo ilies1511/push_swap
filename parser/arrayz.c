@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:01:26 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 14:53:03 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 22:32:58 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	*array_filler(int *amount_numbers, char **argv, int *array)
 int	*make_array(int *amount_numbers, char **argv)
 {
 	int	*array;
-	int	*sorted_array;
+	// int	*sorted_array;
 
 	array = malloc(sizeof(int) * (*amount_numbers));
 	if (!array)
@@ -90,18 +90,15 @@ int	*make_array(int *amount_numbers, char **argv)
 	array = array_filler(amount_numbers, argv, array);
 	if (check_duplicates(array, *amount_numbers) == 1)
 	{
-		write(2, "Error\n", 6);
+		write(1, "Error\n", 6);
 		free(array);
 		exit(1);
 	}
-	sorted_array = malloc(sizeof(int) * (*amount_numbers));
-	if (!sorted_array)
-	{
-		free(array);
-		exit(1);
-	}
-	// sorted_array = array_dub(array, *amount_numbers);
-	// sort_array(sorted_array, *amount_numbers);
-	// print_array(array, *amount_numbers);
+	// sorted_array = malloc(sizeof(int) * (*amount_numbers));
+	// if (!sorted_array)
+	// {
+	// 	free(array);
+	// 	exit(1);
+	// }
 	return (array);
 }

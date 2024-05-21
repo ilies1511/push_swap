@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:10:20 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 21:26:48 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 21:28:18 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int	number_counter(char **argv)
 	substring_words = 0;
 	while (argv && argv[i])
 	{
-		// if (!ft_strncmp(argv[i], "", ft_strlen(argv[i])))
-		// {
-		// 	i++;
-		// 	flag++;
-		// 	continue ;
-		// }
 		if (count_word(argv[i]) > 1)
 		{
 			substring_words = substring_words + count_word(argv[i]);
@@ -61,7 +55,7 @@ int	check_duplicates(int *array, int amount_numbers)
 		{
 			if (array[i] == array[k])
 			{
-				write (2, "Error\n", 6);
+				write (1, "Error\n", 6);
 				exit(1);
 			}
 			k++;
@@ -125,3 +119,30 @@ void	sort_array(int *array, int len)
 		i++;
 	}
 }
+
+// int	number_counter(char **argv)
+// {
+// 	int	i;
+// 	int	substring_words;
+// 	int	flag;
+
+// 	i = 0;
+// 	flag = 0;
+// 	substring_words = 0;
+// 	while (argv && argv[i])
+// 	{
+// 		// if (!ft_strncmp(argv[i], "", ft_strlen(argv[i])))
+// 		// {
+// 		// 	i++;
+// 		// 	flag++;
+// 		// 	continue ;
+// 		// }
+// 		if (count_word(argv[i]) > 1)
+// 		{
+// 			substring_words = substring_words + count_word(argv[i]);
+// 			flag++;
+// 		}
+// 		i++;
+// 	}
+// 	return ((i - 1) - flag + substring_words);
+// }

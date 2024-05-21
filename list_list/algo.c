@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 01:04:03 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 13:37:01 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 19:57:45 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	find_target_pos(t_node **t_a, t_node **t_b)
 	current_b = *t_b;
 	current_a = *t_a;
 	helper_ftp(current_a, current_b, data, t_a);
+	free(data);
 }
 // void	current_position(t_node **tail)
 // {
@@ -579,7 +580,8 @@ void	find_target_pos(t_node **t_a, t_node **t_b)
 // 		cur_a = *t_a;
 // 		while (data->k < data->len_a)
 // 		{
-//// if (find_highest(&cur_b)->index > find_highest(t_a)->index) //|| cur_b->index < find_lowest(t_a)->index)
+//// if (find_highest(&cur_b)->index > find_highest(t_a)->index)
+		//|| cur_b->index < find_lowest(t_a)->index)
 // 			// {
 // 			// 	cur_b->target_pos = find_lowest(t_a)->pos;
 // 			// 	break ;
@@ -588,7 +590,8 @@ void	find_target_pos(t_node **t_a, t_node **t_b)
 // 				&& cur_a->index - cur_b->index < data->delta_index)
 // 			{
 // 				cur_b->target_pos = cur_a->pos;
-//data->delta_index = cur_a->index; //data->delta_index = cur_a->index - cur_b->index;
+//data->delta_index = cur_a->index; //data->delta_index
+		//= cur_a->index - cur_b->index;
 // 			}
 // 			cur_a = cur_a->next;
 // 			data->k++;

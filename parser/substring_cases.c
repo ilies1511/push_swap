@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 05:35:51 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/18 21:26:39 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 21:28:06 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	substring_case_function_preatoi(int words, char **argv, int *k)
 	{
 		if (pre_atoi(substring_case[j]) != 0)
 		{
-			write (2, "Error\n", 6);
+			write (1, "Error\n", 6);
 			exit (1);
 		}
 		j++;
@@ -43,7 +43,7 @@ void	substring_case_function(int substring_words, char **argv, int *k)
 		if (ft_atoi(substring_case[j]) <= INT_MIN
 			|| ft_atoi(substring_case[j]) >= INT_MAX)
 		{
-			write (2, "Error\n", 6);
+			write (1, "Error\n", 6);
 			exit (1);
 		}
 		j++;
