@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 01:04:03 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/20 23:26:30 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/21 02:07:39 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	p2b(t_node **tail_a, t_node **tail_b)
 	median = len / 2;
 	i = 0;
 	pushed = 0;
-	while (i < len)
+	while (i < len && len > 6)
 	{
 		if ((*tail_a)->index <= median)
 		{
@@ -233,6 +233,54 @@ int	absoluter(int number)
 	return (number);
 }
 
+// void	find_cheapest(t_node **tail_a, t_node **tail_b)
+// {
+// 	t_node	*current_b;
+// 	int		cheapest;
+// 	int		len_b;
+// 	int		i;
+// 	t_node	*cheapest_node;
+
+// 	i = 0;
+// 	len_b = count_node(tail_b);
+// 	current_b = *tail_b;
+// 	cheapest = INT_MAX;
+// 	cheapest_node = current_b;
+// 	while (i < len_b)
+// 	{
+// 			// printf("value a = %d; value b = %d; cost a = %d ; cost b = %d ; index a = %d ; index b = %d\n",current_b->target_x, current_b->x, current_b->cost_a, current_b->cost_b, current_b->target_index ,current_b->index);
+
+// 		if ((absoluter(current_b->cost_a)
+// 			+ absoluter(current_b->cost_b)) < cheapest)
+// 		{
+// 			cheapest = absoluter(current_b->cost_a) + absoluter(current_b->cost_b);
+// 			cheapest_node = current_b;
+// 			// sleep(5);
+// 		}
+// 		current_b = current_b->next;
+// 		i++;
+// 	}
+// 			// printf("cheapst cost a = %d ; cheapst cost b = %d \n", current_b->cost_a, current_b->cost_b);
+// 			// exit(1);
+// 	do_cheapest_moves(tail_a, tail_b, cheapest_node);
+// }
+
+int get_cost(t_node *cheapest_node)
+{
+	if ((cheapest_node->cost_a >= 0 && cheapest_node->cost_b >= 0)
+		|| (cheapest_node->cost_a < 0 && cheapest_node->cost_b < 0))
+	{
+		if (absoluter(cheapest_node->cost_a) > absoluter(cheapest_node->cost_b))
+			return (absoluter(cheapest_node->cost_a));
+		else
+			return (absoluter(cheapest_node->cost_b));
+	}
+	else
+	{
+		return(absoluter(cheapest_node->cost_a) + absoluter(cheapest_node->cost_b));
+	}
+}
+
 void	find_cheapest(t_node **tail_a, t_node **tail_b)
 {
 	t_node	*current_b;
@@ -245,14 +293,14 @@ void	find_cheapest(t_node **tail_a, t_node **tail_b)
 	len_b = count_node(tail_b);
 	current_b = *tail_b;
 	cheapest = INT_MAX;
+	cheapest_node = current_b;
 	while (i < len_b)
 	{
 			// printf("value a = %d; value b = %d; cost a = %d ; cost b = %d ; index a = %d ; index b = %d\n",current_b->target_x, current_b->x, current_b->cost_a, current_b->cost_b, current_b->target_index ,current_b->index);
 
-		if ((absoluter(current_b->cost_a)
-			+ absoluter(current_b->cost_b)) < cheapest)
+		if (get_cost(current_b) < cheapest)
 		{
-			cheapest = current_b->cost_a + current_b->cost_b;
+			cheapest = get_cost(current_b);
 			cheapest_node = current_b;
 			// sleep(5);
 		}
@@ -289,7 +337,8 @@ void	travel_costs(t_node **tail_a, t_node **tail_b)
 	{
 
 		current_b->cost_b = current_b->pos;
-		if (current_b->pos >= len_b / 2)
+		// printf("current pos = %d\n", current_b->pos);
+		if (current_b->pos > len_b / 2)
 			current_b->cost_b = (len_b - current_b->pos) * (-1);
 		current_b->cost_a = current_b->target_pos;
 		if (current_b->target_pos >= len_a / 2)
