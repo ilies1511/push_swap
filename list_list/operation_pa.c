@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:41:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 21:11:14 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/22 13:13:51 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 // {
 
 // }
-
 
 //Funktioniert aber mit Allocation
 // void	pa(t_node **tail_a, t_node **tail_b, int flag)
@@ -59,6 +58,21 @@
 // 	current_position(tail_a);
 // 	current_position(tail_b);
 // }
+static void	check_destination(t_node **tail_a, t_node *node2push)
+{
+	if (!(*tail_a))
+	{
+		node2push->next = node2push;
+		node2push->prev = node2push;
+	}
+	else
+	{
+		node2push->next = (*tail_a);
+		node2push->prev = (*tail_a)->prev;
+		(*tail_a)->prev->next = node2push;
+		(*tail_a)->prev = node2push;
+	}
+}
 
 void	pa(t_node **tail_a, t_node **tail_b, int flag)
 {
@@ -79,18 +93,7 @@ void	pa(t_node **tail_a, t_node **tail_b, int flag)
 		end_b->next = new_tail;
 		(*tail_b) = new_tail;
 	}
-	if (!(*tail_a))
-	{
-		node2push->next = node2push;
-		node2push->prev = node2push;
-	}
-	else
-	{
-		node2push->next = (*tail_a);
-		node2push->prev = (*tail_a)->prev;
-		(*tail_a)->prev->next = node2push;
-		(*tail_a)->prev = node2push;
-	}
+	check_destination(tail_a, node2push);
 	(*tail_a) = node2push;
 	if (flag == 1)
 		write(1, "pa\n", 3);
@@ -139,7 +142,6 @@ void	pa(t_node **tail_a, t_node **tail_b, int flag)
 // 	current_position(tail_a);
 // 	current_position(tail_b);
 // }
-
 
 // void	pa(t_node **tail_a, t_node **tail_b)
 // {

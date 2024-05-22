@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/22 00:27:12 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/22 15:16:24 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 	if (sort_checker(&tail_a))
 	{
 		deallocate_list(&tail_a);
-		exit (1);
+		free(array);
+		free(sorted_array);
+		exit (0);
 	}
 	p2b(&tail_a, &tail_b);
 	tiny_sort(&tail_a);

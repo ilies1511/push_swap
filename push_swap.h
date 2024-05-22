@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 11:14:35 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/22 13:30:08 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@
 // 	t_node	*last;
 // }			t_swap;
 
+// typedef struct s_extrems
+// {
+// 	t_node	*start;
+// 	t_node	*end;
+// }			t_extrems;
+
+typedef struct s_array_filler
+{
+	int		i;
+	int		k;
+	int		substring_words;
+	char	**substring_case;
+	int		j;
+}			t_array_filler;
+
 typedef struct s_find_target_pos
 {
 	int		delta_index;
@@ -36,12 +51,6 @@ typedef struct s_find_target_pos
 	int		k;
 	int		i;
 }			t_target;
-
-// typedef struct s_extrems
-// {
-// 	t_node	*start;
-// 	t_node	*end;
-// }			t_extrems;
 
 typedef struct s_node
 {

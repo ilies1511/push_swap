@@ -6,22 +6,21 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:14:22 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/19 01:29:07 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/22 13:20:41 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+//Not working, look at sa
 void	sb(t_node **tail, int flag)
 {
 	t_node	*first;
 	t_node	*second;
 	int		len;
 
-	if (!(*tail))
-		return ;
 	len = count_node(tail);
-	if (len < 2)
+	if (!(*tail) || len < 2)
 		return ;
 	if (len == 2)
 		rb(tail, 0);
@@ -41,6 +40,35 @@ void	sb(t_node **tail, int flag)
 		write(1, "sb\n", 3);
 	current_position(tail);
 }
+// void	sb(t_node **tail, int flag)
+// {
+// 	t_node	*first;
+// 	t_node	*second;
+// 	int		len;
+
+// 	if (!(*tail))
+// 		return ;
+// 	len = count_node(tail);
+// 	if (len < 2)
+// 		return ;
+// 	if (len == 2)
+// 		rb(tail, 0);
+// 	else
+// 	{
+// 		first = (*tail);
+// 		second = (*tail)->next;
+// 		first->next = second->next;
+// 		first->prev->next = second;
+// 		second->prev = first;
+// 		second->prev = first->prev;
+// 		second->next = first;
+// 		first->prev = second;
+// 		*tail = second;
+// 	}
+// 	if (flag == 1)
+// 		write(1, "sb\n", 3);
+// 	current_position(tail);
+// }
 
 // void	sb(t_node **tail, int flag)
 // {
@@ -68,7 +96,6 @@ void	sb(t_node **tail, int flag)
 // 	if (flag == 1)
 // 		write(1, "sb\n", 3);
 // }
-
 
 // void	sb(t_node **tail_b, int flag)
 // {

@@ -6,13 +6,13 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:45:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/22 00:29:40 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/22 18:01:25 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void foo()
+void	foo(void)
 {
 	system("leaks push_swap");
 }
@@ -23,10 +23,7 @@ int	ft_space_checker(const char *str)
 
 	counter = 0;
 	if (ft_strncmp(str, "", ft_strlen(str)))
-	{
-		return 0;
-	}
-
+		return (0);
 	while (str && str[counter] && str[counter] != '\0')
 	{
 		if (str[counter] != ' ' || str[counter] != '\t')
@@ -36,16 +33,21 @@ int	ft_space_checker(const char *str)
 	return (0);
 }
 
-	// Fuer System- leaks atexit(foo);
+//For System-> leaks atexit(foo);
 int	main(int argc, char **argv)
 {
 	int	*array;
 	int	*sorted_array;
 	int	amount_words;
 
-	if ((argc <= 1)
-		|| (argc == 2 && !ft_space_checker(argv[1])))
+	if (argc == 2 && !ft_isdigit(ft_atoi(argv[1])))
+	{
+		write (2, "Error\n", 6);
 		return (1);
+	}
+	if ((argc <= 1)
+		|| ((argc == 2 && !ft_space_checker(argv[1]))))
+		return (0);
 	amount_words = number_counter(argv);
 	parcer(argv, amount_words);
 	array = make_array(&amount_words, argv);

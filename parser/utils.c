@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:10:20 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 21:28:18 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/22 17:08:54 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	check_duplicates(int *array, int amount_numbers)
 		{
 			if (array[i] == array[k])
 			{
-				write (1, "Error\n", 6);
+				write(2, "Error\n", 6);
+				free(array);
 				exit(1);
 			}
 			k++;
