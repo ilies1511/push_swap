@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 00:57:53 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 03:28:12 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:20:29 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ void	helper_swap(t_node **tail, t_swap *data)
 	*tail = data->second;
 }
 
-void	sa(t_node **tail, int flag)
+void	sa(t_node **tail)
 {
 	t_swap	*data;
 
-	(void)flag;
 	data = (t_swap *)malloc(sizeof(t_swap));
 	if (!data)
 		exit (1);
@@ -80,7 +79,7 @@ void	sa(t_node **tail, int flag)
 		return ;
 	if (data->len == 2)
 	{
-		ra(tail, 0);
+		ra(tail);
 		return ;
 	}
 	else

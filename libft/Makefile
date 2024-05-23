@@ -6,6 +6,10 @@ HEADER = libft.h
 
 CFLAGS = cc -Wall -Wextra -Werror -g
 
+GNL = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+
+GNL_OBJS = $(GNL:%.c=%.o)
+
 .DEFAULT_GOAL := all # default rule to be executed
 
 SRCS += ft_bzero.c
@@ -59,8 +63,8 @@ OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 all: $(NAME)
-$(NAME): $(OBJS) $(BONUS_OBJS)
-	ar rcs $@ $(OBJS) $(BONUS_OBJS)
+$(NAME): $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
+	ar rcs $@ $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
 
 $(OBJS): %.o: %.c $(HEADER)
 	$(CFLAGS) -I. -c $< -o $@
@@ -68,8 +72,11 @@ $(OBJS): %.o: %.c $(HEADER)
 $(BONUS_OBJS): %.o: %.c $(HEADER)
 	$(CFLAGS) -I. -c $< -o $@
 
+$(GNL_OBJS): %.o: %.c $(HEADER)
+	$(CFLAGS) -I. -c $< -o $@
+
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
 
 fclean: clean
 	rm -f $(NAME)

@@ -6,23 +6,21 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 04:13:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 03:27:52 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:17:50 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_checker.h"
 
-void	rra(t_node **tail, int flag)
+void	rra(t_node **tail)
 {
-	(void)flag;
 	if (!(*tail))
 		return ;
 	*tail = (*tail)->prev;
 }
 
-void	rrb(t_node **tail, int flag)
+void	rrb(t_node **tail)
 {
-	(void)flag;
 	if (!(*tail))
 		return ;
 	*tail = (*tail)->prev;

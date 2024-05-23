@@ -6,32 +6,34 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:45:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/22 18:01:25 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 00:36:01 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	check(t_node	**tail_a, t_node **tail_b);
 
 void	foo(void)
 {
 	system("leaks push_swap");
 }
 
-int	ft_space_checker(const char *str)
-{
-	int	counter;
+// int	ft_space_checker(const char *str)
+// {
+// 	int	counter;
 
-	counter = 0;
-	if (ft_strncmp(str, "", ft_strlen(str)))
-		return (0);
-	while (str && str[counter] && str[counter] != '\0')
-	{
-		if (str[counter] != ' ' || str[counter] != '\t')
-			return (1);
-		counter++;
-	}
-	return (0);
-}
+// 	counter = 0;
+// 	if (ft_strncmp(str, "", ft_strlen(str)))
+// 		return (0);
+// 	while (str && str[counter] && str[counter] != '\0')
+// 	{
+// 		if (str[counter] != ' ' || str[counter] != '\t')
+// 			return (1);
+// 		counter++;
+// 	}
+// 	return (0);
+// }
 
 //For System-> leaks atexit(foo);
 int	main(int argc, char **argv)

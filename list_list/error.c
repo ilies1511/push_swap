@@ -6,11 +6,27 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:47:46 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/21 15:43:43 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/22 23:16:32 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+int	ft_space_checker(const char *str)
+{
+	int	counter;
+
+	counter = 0;
+	if (ft_strncmp(str, "", ft_strlen(str)))
+		return (0);
+	while (str && str[counter] && str[counter] != '\0')
+	{
+		if (str[counter] != ' ' || str[counter] != '\t')
+			return (1);
+		counter++;
+	}
+	return (0);
+}
 
 void	deallocate_list(t_node **tail)
 {

@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:49:24 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 04:03:11 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:24:06 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,32 +88,23 @@ int		count_node(t_node **tail);
 void	init_index(t_node **tail, int *sorted_array, int len);
 t_node	*find_highest(t_node **tail);
 t_node	*find_lowest(t_node **tail);
-void	tiny_sort(t_node **tail);
+// void	tiny_sort(t_node **tail);
 int		sort_checker_bonus(t_node **tail);
 void	p2b(t_node **tail_a, t_node **tail_b);
 void	current_position(t_node **tail);
-void	find_target_pos(t_node **t_a, t_node **t_b);
-void	travel_costs(t_node **tail_a, t_node **tail_b);
-void	find_cheapest(t_node **tail_a, t_node **tail_b);
 int		target_value(t_node *a, int i);
 void	shifter(t_node **tail_a);
-void	rot_stack_a(t_node **tail, int *cost);
-void	rot_stack_b(t_node **tail, int *cost);
-void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest);
-int		absoluter(int number);
-void	izi_sort(t_node **tail_a, t_node **tail_b);
-void	go_2_algo(t_node *tail_a, t_node *tail_b);
 //Operation
-void	sa(t_node **tail, int flag);
-void	sb(t_node **tail, int flag);
+void	sa(t_node **tail);
+void	sb(t_node **tail);
 void	ss(t_node **tail_a, t_node **tail_b);
-void	pb(t_node **tail_a, t_node **tail_b, int flag);
-void	pa(t_node **tail_a, t_node **tail_b, int flag);
-void	ra(t_node **tail, int flag);
-void	rb(t_node **tail, int flag);
+void	pb(t_node **tail_a, t_node **tail_b);
+void	pa(t_node **tail_a, t_node **tail_b);
+void	ra(t_node **tail);
+void	rb(t_node **tail);
 void	rr(t_node **tail_a, t_node **tail_b);
-void	rra(t_node **tail, int flag);
-void	rrb(t_node **tail, int flag);
+void	rra(t_node **tail);
+void	rrb(t_node **tail);
 void	rrr(t_node **tail_a, t_node **tail_b);
 //Bonus
 int		ft_space_checker(const char *str);

@@ -6,25 +6,24 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:14:22 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 03:39:05 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:20:41 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_checker.h"
 
 //Not working, look at sa
-void	sb(t_node **tail, int flag)
+void	sb(t_node **tail)
 {
 	t_node	*first;
 	t_node	*second;
 	int		len;
 
-	(void)flag;
 	len = count_node(tail);
 	if (!(*tail) || len < 2)
 		return ;
 	if (len == 2)
-		rb(tail, 0);
+		rb(tail);
 	else
 	{
 		first = (*tail);

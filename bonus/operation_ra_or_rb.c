@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:38:13 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 03:38:37 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:15:53 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,15 @@
 // 	if (flag == 1)
 // 		write(1, "rb\n", 3);
 // }
-void	rb(t_node **tail, int flag)
+void	rb(t_node **tail)
 {
-	(void)flag;
 	if (!(*tail))
 		return ;
 	*tail = (*tail)->next;
 }
 
-void	ra(t_node **tail, int flag)
+void	ra(t_node **tail)
 {
-	(void)flag;
 	if (!(*tail))
 		return ;
 	*tail = (*tail)->next;

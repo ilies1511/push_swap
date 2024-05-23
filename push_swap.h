@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 23:17:19 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/22 13:30:08 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 00:33:31 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ void	rot_stack_a(t_node **tail, int *cost);
 void	rot_stack_b(t_node **tail, int *cost);
 void	do_cheapest_moves(t_node **tail_a, t_node **tail_b, t_node *cheapest);
 int		absoluter(int number);
+void	izi_sort(t_node **tail_a, t_node **tail_b);
+void	go_2_algo(t_node *tail_a, t_node *tail_b);
 //Operation
 void	sa(t_node **tail, int flag);
 void	sb(t_node **tail, int flag);
@@ -129,6 +131,7 @@ void	rr(t_node **tail_a, t_node **tail_b);
 void	rra(t_node **tail, int flag);
 void	rrb(t_node **tail, int flag);
 void	rrr(t_node **tail_a, t_node **tail_b);
-//Utils Debug
+//Bonus
+int		ft_space_checker(const char *str);
 
 #endif

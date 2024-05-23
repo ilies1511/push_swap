@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:21:36 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 04:12:18 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:15:27 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ static void	check_destination(t_node **tail_b, t_node *node2push)
 	}
 }
 
-void	pb(t_node **tail_a, t_node **tail_b, int flag)
+void	pb(t_node **tail_a, t_node **tail_b)
 {
 	t_node	*node2push;
 	t_node	*end_a;
 	t_node	*new_tail;
 
-	(void)flag;
 	if (!(*tail_a))
 		return ;
 	node2push = (*tail_a);

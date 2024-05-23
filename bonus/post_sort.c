@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:17:46 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 02:15:19 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:21:17 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	shifter(t_node **tail_a)
 	if (find_highest(tail_a)->pos > len / 2)
 	{
 		while (!sort_checker_bonus(tail_a))
-			rra(tail_a, 1);
+			rra(tail_a);
 	}
 	else
 	{
 		while (!sort_checker_bonus(tail_a))
-			ra(tail_a, 1);
+			ra(tail_a);
 	}
 }

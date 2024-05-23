@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 01:49:07 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 04:10:35 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:19:03 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,27 @@ int	sort_checker_bonus(t_node **tail)
 static int	cmp_operations(char *line, t_node **tail_a, t_node **tail_b)
 {
 	if (!ft_strncmp(line, "sa\n", ft_strlen(line)))
-		sa(tail_a, 0);
+		sa(tail_a);
 	else if (!ft_strncmp(line, "sb\n", ft_strlen(line)))
-		sb(tail_b, 0);
+		sb(tail_b);
 	else if (!ft_strncmp(line, "pa\n", ft_strlen(line)))
-		pa(tail_a, tail_b, 0);
+		pa(tail_a, tail_b);
 	else if (!ft_strncmp(line, "pb\n", ft_strlen(line)))
-		pb(tail_a, tail_b, 0);
+		pb(tail_a, tail_b);
 	else if (!ft_strncmp(line, "ss\n", ft_strlen(line)))
 		ss(tail_a, tail_b);
 	else if (!ft_strncmp(line, "ra\n", ft_strlen(line)))
-		ra(tail_a, 0);
+		ra(tail_a);
 	else if (!ft_strncmp(line, "rb\n", ft_strlen(line)))
-		rb(tail_b, 0);
+		rb(tail_b);
 	else if (!ft_strncmp(line, "rr\n", ft_strlen(line)))
 		rr(tail_a, tail_b);
 	else if (!ft_strncmp(line, "rra\n", ft_strlen(line)))
-		rra(tail_a, 0);
+		rra(tail_a);
 	else if (!ft_strncmp(line, "rrb\n", ft_strlen(line)))
-		rrb(tail_b, 0);
+		rrb(tail_b);
 	else if (!ft_strncmp(line, "rrr\n", ft_strlen(line)))
-		rrr(tail_b, 0);
+		rrr(tail_a, tail_b);
 	else
 		return (0);
 	return (1);
@@ -88,17 +88,6 @@ int	reader(t_node	**tail_a, t_node **tail_b)
 		write (1, "KO\n", 3);
 	return (0);
 }
-
-// void	check(t_node **tail_a, t_node **tail_b)
-// {
-// 	if (reader(tail_a, tail_b))
-// 	{
-// 		if (sort_checker_bonus(tail_a))
-// 			write (1, "OK\n", 3);
-// 		else
-// 			write (1, "KO\n", 3);
-// 	}
-// }
 
 void	list_manager(int *array, int amount_numbers, int *sorted_array, int e)
 {
