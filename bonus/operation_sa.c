@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 00:57:53 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 02:12:27 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 03:28:12 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	sa(t_node **tail, int flag)
 {
 	t_swap	*data;
 
+	(void)flag;
 	data = (t_swap *)malloc(sizeof(t_swap));
 	if (!data)
 		exit (1);
@@ -84,10 +85,7 @@ void	sa(t_node **tail, int flag)
 	}
 	else
 		helper_swap(tail, data);
-	if (flag == 1)
-		write(1, "sa\n", 3);
 	free(data);
-	current_position(tail);
 }
 
 // void	sa(t_node **tail, int flag)

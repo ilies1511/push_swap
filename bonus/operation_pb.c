@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:21:36 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 02:12:27 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:12:18 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	pb(t_node **tail_a, t_node **tail_b, int flag)
 	t_node	*end_a;
 	t_node	*new_tail;
 
+	(void)flag;
 	if (!(*tail_a))
 		return ;
 	node2push = (*tail_a);
@@ -49,10 +50,6 @@ void	pb(t_node **tail_a, t_node **tail_b, int flag)
 	}
 	check_destination(tail_b, node2push);
 	(*tail_b) = node2push;
-	if (flag == 1)
-		write(1, "pb\n", 3);
-	current_position(tail_a);
-	current_position(tail_b);
 }
 
 // Bevor Muhammed Fehler gefunden hat

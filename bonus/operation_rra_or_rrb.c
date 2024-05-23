@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 04:13:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 02:12:27 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 03:27:52 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 void	rra(t_node **tail, int flag)
 {
+	(void)flag;
 	if (!(*tail))
 		return ;
 	*tail = (*tail)->prev;
-	if (flag == 1)
-		write(1, "rra\n", 4);
-	current_position(&(*tail));
 }
 
 void	rrb(t_node **tail, int flag)
 {
+	(void)flag;
 	if (!(*tail))
 		return ;
 	*tail = (*tail)->prev;
-	if (flag == 1)
-		write(1, "rrb\n", 4);
-	current_position(tail);
 }
 // void	rra(t_node **tail, t_node **head, int flag)
 // {

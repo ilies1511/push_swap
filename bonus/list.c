@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 02:14:51 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:10:56 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array)
 		free(sorted_array);
 		exit (0);
 	}
-
 }
 // void	list_manager(int *array, int amount_numbers, int *sorted_array)
 // {

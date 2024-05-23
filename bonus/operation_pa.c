@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:41:10 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 02:12:27 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 03:38:10 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	pa(t_node **tail_a, t_node **tail_b, int flag)
 	t_node	*end_b;
 	t_node	*new_tail;
 
+	(void)flag;
 	if (!(*tail_b))
 		return ;
 	node2push = (*tail_b);
@@ -95,10 +96,6 @@ void	pa(t_node **tail_a, t_node **tail_b, int flag)
 	}
 	check_destination(tail_a, node2push);
 	(*tail_a) = node2push;
-	if (flag == 1)
-		write(1, "pa\n", 3);
-	current_position(tail_a);
-	current_position(tail_b);
 }
 
 //TODO: Perfectly working

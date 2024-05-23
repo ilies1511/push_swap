@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:49:24 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 01:59:36 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:03:11 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ void	rrb(t_node **tail, int flag);
 void	rrr(t_node **tail_a, t_node **tail_b);
 //Bonus
 int		ft_space_checker(const char *str);
+int		reader(t_node	**tail_a, t_node **tail_b);
 
 #endif

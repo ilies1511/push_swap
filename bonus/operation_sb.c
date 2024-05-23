@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 01:14:22 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 02:12:27 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 03:39:05 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	sb(t_node **tail, int flag)
 	t_node	*second;
 	int		len;
 
+	(void)flag;
 	len = count_node(tail);
 	if (!(*tail) || len < 2)
 		return ;
@@ -36,9 +37,6 @@ void	sb(t_node **tail, int flag)
 		first->prev = second;
 		*tail = second;
 	}
-	if (flag == 1)
-		write(1, "sb\n", 3);
-	current_position(tail);
 }
 // void	sb(t_node **tail, int flag)
 // {
