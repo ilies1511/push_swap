@@ -6,18 +6,19 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:45:32 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 00:36:01 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 06:50:29 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check(t_node	**tail_a, t_node **tail_b);
+//TODO:
+// void	check(t_node	**tail_a, t_node **tail_b);
 
-void	foo(void)
-{
-	system("leaks push_swap");
-}
+// void	foo(void)
+// {
+// 	system("leaks push_swap");
+// }
 
 // int	ft_space_checker(const char *str)
 // {
@@ -42,13 +43,13 @@ int	main(int argc, char **argv)
 	int	*sorted_array;
 	int	amount_words;
 
-	if (argc == 2 && !ft_isdigit(ft_atoi(argv[1])))
+	if (argc == 2 && !pre_atoi(argv[1]))
 	{
-		write (2, "Error\n", 6);
-		return (1);
+		write (1, "Error\n", 6);
+		exit (1);
 	}
 	if ((argc <= 1)
-		|| ((argc == 2 && !ft_space_checker(argv[1]))))
+		|| ((argc == 2 && ft_space_checker(argv[1]) && !pre_atoi(argv[1]))))
 		return (0);
 	amount_words = number_counter(argv);
 	parcer(argv, amount_words);

@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:07:06 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 02:23:48 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 05:00:33 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ int	count_node(t_node **tail)
 	}
 	return (len + 1);
 }
+//TODO:
+// void	out_put_a(t_node *a)
+// {
+// 	int	i;
+// 	int	len;
 
-void	out_put_a(t_node *a)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = count_node(&a);
-	while (i < len)
-	{
-		printf("%i ", a->x);
-		a = a->next;
-		i++;
-	}
-	printf("\n");
-}
+// 	i = 0;
+// 	len = count_node(&a);
+// 	while (i < len)
+// 	{
+// 		// printf("%i ", a->x);
+// 		a = a->next;
+// 		i++;
+// 	}
+// 	// printf("\n");
+// }
 
 int	target_value(t_node *a, int i)
 {
@@ -51,19 +51,19 @@ int	target_value(t_node *a, int i)
 		a = a->next;
 	return (a->index);
 }
+//TODO:
+// void	print_left2right(t_node **tail, t_node **head)
+// {
+// 	t_node	*current;
 
-void	print_left2right(t_node **tail, t_node **head)
-{
-	t_node	*current;
-
-	current = *tail;
-	if (!(*tail))
-		return ;
-	while (1)
-	{
-		printf("%d ", current->x);
-		if (current == *head)
-			break ;
-		current = current->next;
-	}
-}
+// 	current = *tail;
+// 	if (!(*tail))
+// 		return ;
+// 	while (1)
+// 	{
+// 		// printf("%d ", current->x);
+// 		if (current == *head)
+// 			break ;
+// 		current = current->next;
+// 	}
+// }

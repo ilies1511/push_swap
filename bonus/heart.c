@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 01:49:07 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/23 04:19:03 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 05:14:35 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	reader(t_node	**tail_a, t_node **tail_b)
 	return (0);
 }
 
-void	list_manager(int *array, int amount_numbers, int *sorted_array, int e)
+void	list_manager(int *array, int amount_numbers, int *sorted_array)
 {
 	t_node	*tail_a;
 	t_node	*tail_b;
@@ -101,8 +101,7 @@ void	list_manager(int *array, int amount_numbers, int *sorted_array, int e)
 	while (i < amount_numbers)
 		add_end(&tail_a, array[i++]);
 	init_index(&tail_a, sorted_array, amount_numbers);
-	if (e == 0)
-		reader(&tail_a, &tail_b);
+	reader(&tail_a, &tail_b);
 	free(array);
 	array = NULL;
 	free(sorted_array);

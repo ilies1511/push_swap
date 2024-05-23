@@ -6,7 +6,7 @@
 /*   By: iziane <iziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:01:26 by iziane            #+#    #+#             */
-/*   Updated: 2024/05/22 19:28:56 by iziane           ###   ########.fr       */
+/*   Updated: 2024/05/23 04:59:26 by iziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,19 @@ int	*array_dub(int *array, int amount_numbers)
 	return (array_cpy);
 }
 
-void	print_array(int *array, int amount_numbers)
-{
-	int	i;
+// //TODO:
+// void	print_array(int *array, int amount_numbers)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < amount_numbers && array)
-	{
-		printf("%d ", array[i]);
-		i++;
-	}
-	printf("\n");
-}
+// 	i = 0;
+// 	while (i < amount_numbers && array)
+// 	{
+// 		// printf("%d ", array[i]);
+// 		i++;
+// 	}
+// 	// printf("\n");
+// }
 
 static t_array_filler	*init_data(void)
 {
